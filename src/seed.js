@@ -2,13 +2,43 @@
 (function() {
 
     this._parent = null;
+    var cloner = null;
+
+    var _getClonner = function() {
+        // SeedJs has as a hard dependence on either pi.js
+        // (Delivered with SeedJs) or jQuery
+        var _cloner = null;
+        if (window.pi) {
+            _cloner = window.pi;
+        } else if (window.jQuery) {
+            _cloner = {
+                extend: function(destinationObject, originObject) {
+                    return jQuery.extend(true, destinationObject, originObject);
+                },
+                clone: function(clonable) {
+                    return jQuery.extend(true, {}, clonable);
+                }
+            };
+        } else {
+            throw ('SeedJs needs either PiJs or jQuery');
+        }
+        return _cloner;
+    }
+    cloner = _getClonner();
 
     // Base Constructor
     var Seed = window.Seed = function(attributes, options) {
         var defaults;
         if (options) {
-            this.options = pi.clone(options)
+            this.options = cloner.clone(options);
         }
+        // debugger;
+        for (prop in this) {
+            if (typeof this[prop] == 'object') {
+                this[prop] = cloner.clone(this[prop]);
+            }
+        }
+
         this.initialize.apply(this, arguments);
     }
 
@@ -19,7 +49,7 @@
     * @param {Object} params Data of the new class
     */
     Seed.prototype.initialize = function(params) {
-        this.options = pi.clone(params);
+        this.options = cloner.clone(params);
     };
 
     /**
@@ -120,7 +150,7 @@
     *
     * @function baseConstructor
     */
-    var baseConstructor = function() {};
+    var baseConstructor = function() {this.signature = ('a');};
 
     /**
     *
@@ -141,28 +171,28 @@
         } else {
             child = function() {
                 parent.call(this,
-                    pi.clone(protoProperties),
-                    pi.clone(staticProperties)
+                    cloner.clone(protoProperties),
+                    cloner.clone(staticProperties)
                 );
             };
         }
         // Inherit class (static) properties from parent.
-        child = pi.extend(child, parent);
+        child = cloner.extend(child, parent);
 
         // Set the prototype chain to inherit from `parent`, without calling
         // `parent`'s constructor function.
-        baseConstructor.prototype = pi.clone(parent.prototype);
+        baseConstructor.prototype = cloner.clone(parent.prototype);
         child.prototype = new baseConstructor();
 
         // Add prototype properties (instance properties) to the subclass,
         // if supplied.
         if (protoProperties) {
-            child.prototype = pi.extend(child.prototype, protoProperties);
+            child.prototype = cloner.extend(child.prototype, protoProperties);
         }
 
         // Add static properties to the constructor function, if supplied.
         if (staticProperties) {
-            child = pi.extend(child, staticProperties);
+            child = cloner.extend(child, staticProperties);
         }
         // Correctly set child's `prototype.constructor`.
         child.prototype.constructor = child;
@@ -187,9 +217,9 @@
     */
     var marry = function(partner) {
         var thisExtendable = this.extend();
-        var thisPrototype = pi.clone(thisExtendable.prototype);
-        var partnerPrototype = pi.clone(partner.prototype);
-        thisExtendable.prototype = pi.extend(partnerPrototype, thisPrototype);
+        var thisPrototype = cloner.clone(thisExtendable.prototype);
+        var partnerPrototype = cloner.clone(partner.prototype);
+        thisExtendable.prototype = cloner.extend(partnerPrototype, thisPrototype);
         return thisExtendable;
     }
     Seed.marry = marry;

@@ -4,7 +4,7 @@
     this._parent = null;
     var cloner = null;
 
-    var _getClonner = function() {
+    var _getCloner = function() {
         // SeedJs has as a hard dependence on either pi.js
         // (Delivered with SeedJs) or jQuery
         var _cloner = null;
@@ -24,7 +24,7 @@
         }
         return _cloner;
     }
-    cloner = _getClonner();
+    cloner = _getCloner();
 
     // Base Constructor
     var Seed = window.Seed = function(attributes, options) {

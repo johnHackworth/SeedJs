@@ -11,7 +11,7 @@ Don't get me wrong... Backbone has represented a HUGE step forward for the web a
 2. But! aren't you saying backbone is broken?
 -----------------------------------
 
-No, no, no. Backbone is not broken. Backbone is the work and the vision of Mr. Ashkenas, and sometimes I don't share that same vision related to certain points.
+No, no, no. Backbone is not broken. Backbone is the work and the vision of Mr. Ashkenas, and sometimes I don't share that same vision related to certain points. But it's perfectly fine, as long as you understand how it works and you are confortable with it!
 
 3. But then, what happens with backbone inheritance? Isn't SeedJs intended to fix them?
 -----------------------------------

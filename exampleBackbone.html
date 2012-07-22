@@ -1,0 +1,110 @@
+<html>
+<body>
+    <div class="container">Hello world</div>
+
+    <div class="containerClio">Hello world</div>
+
+    <div class="containerYamaha">Hello world</div>
+</body>
+<script src=" https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.2/backbone-min.js"></script>
+
+<script src="/SeedJs/src/pi.js"></script>
+<script src="/SeedJs/src/seed.js"></script>
+<script src="/SeedJs/src/backboneAdapter.js"></script>
+
+
+<script>
+var Vehiculo = SeedModel.extend({motor:{cilindros:0, pistones:0},
+    ruedas:0,
+    puertas:0,
+    speed: 0,
+    name: 'Vehicle',
+    sound: "rrrrrrrr",
+    run: function() {
+        this.trigger('run');
+    },
+    acelerate: function() {
+        this.speed += 10;
+        console.log('new speed:' + this.speed);
+    },
+    brake: function() {
+        this.speed -= 10;
+    }
+});
+var Coche = Vehiculo.extend({ruedas: 4,
+    puertas:4,
+    sound: "brrum brrrum"
+});
+var Moto = Vehiculo.extend({ruedas: 2});
+var Clio = Coche.extend({
+    name: "little car",
+    motor:{cilindros:8, pistones:16},
+    acelerate: function() {
+        this.parent('acelerate');
+        if(this.speed > 50) {
+            this.speed = 0;
+            alert('CRASH');
+        }
+    },
+    run: function() {
+        this.acelerate();
+        this.parent('run');
+    }
+
+});
+var Yamaha = Moto.extend({
+    name: "Yamaha",
+    motor:{cilindros:4, pistones:10},
+    run: function()  {
+        this.acelerate();
+        this.acelerate();
+        this.parent('run');
+    }
+});
+
+var VehiculoView = Backbone.View.extend({
+    model: Vehiculo,
+    events: {
+        'click a':'run'
+    },
+    initialize: function() {
+        this.run = _.bind(this.run,this);
+        this.render = _.bind(this.render, this);
+        this.model.bind('run', this.render);
+
+    },
+    render: function() {
+        $(this.el).html("The " + this.model.name + ' goes at ' + this.model.speed);
+        $(this.el).append("<br/><a href='#'>Run run run!</a>");
+    },
+    run: function(e) {
+        e.preventDefault();
+        this.model.run();
+    }
+})
+
+$(document).ready(function() {
+
+    window.v = new Vehiculo();
+    window.vView = new VehiculoView({
+        el: $('.container'),
+        model: v
+    });
+    vView.render();
+    window.c = new Clio();
+    window.cView = new VehiculoView({
+        el: $('.containerClio'),
+        model: c
+    });
+    cView.render();
+    window.y = new Yamaha();
+    window.yView = new VehiculoView({
+        el: $('.containerYamaha '),
+        model: y
+    });
+    yView.render();
+})
+</script>
+</html>

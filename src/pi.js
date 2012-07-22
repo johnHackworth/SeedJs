@@ -1,3 +1,11 @@
+/*******************************************
+  PiJs is a helper library that provides methods to
+  extend and clone javascript objects
+
+  author: Javier Alvarez
+  <javieralvarezlop@gmail.com>
+  http://twitter.com/johnhackworth
+*******************************************/
 var pi = function() {
     var _cloneArray = function(arr)  {
         var _clonedArr = [];

@@ -40,7 +40,8 @@
                 }
             };
         } else if (window.pi) {
-            _cloner = window.pi;
+            throw ('PiJs is still in progress, right now you need jquery');
+//            _cloner = window.pi;
         } else {
             throw ('SeedJs needs either PiJs or jQuery');
         }

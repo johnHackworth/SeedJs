@@ -3,6 +3,10 @@ SeedJs
 
 SeedJs is a standalone library that provides you the minimal structure to be able to implement classes in your javascrit project. At the same time, it's also a backbone.js extender/fixer. Right now, It deals with backbone inheritance "problems" and fixes them, helping you to be able to have a more "classical" approach to your application architecture.
 
+SeedJs provides you with a more robust inheritance system. You can populate your clases with nested objects without sharing them, you can call to parent methods without the ugy parentName.prototype.method.call way and you can think more about your classes and less about how to implement them, in general.
+
+Right now, SeedJs requires jQuery. We are working in a small library that substitute the clone/extend features of jQuery, to make it available to non-jquery projects, but it's still in the oven.
+
 1. Why do you need to fix Backbone?
 -----------------------------------
 
@@ -51,9 +55,9 @@ timeTrial.body.weight = 1
 nice! let's see how much our bikes now weight!
 
 console.log(timeTrial.body.weight)
-# 1
+~ 1
 console.log(mountain.body.weight)
-# 1
+~ 1
 
 Say what??? now our mountain bike weights also 1!!!! Ok, you, level 25 javascripter with a +25 sword made of pure Crockfordite, now what just happens. And now how to avoid it and have seen the failure from the very beggining. But for people who are just approaching or have a basic javascript formation, this is brain-crushing. What? what have just happened??
 

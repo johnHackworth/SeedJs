@@ -12,6 +12,7 @@ Vehiculo = Seed.extend({motor:{cilindros:0, pistones:0},
     },
     acelerate: function() {
         this.speed += 10;
+        console.log('new speed:' + this.speed);
     },
     brake: function() {
         this.speed -= 10;
@@ -26,11 +27,14 @@ Clio = Coche.extend({
     motor:{cilindros:8, pistones:16},
     acelerate: function() {
         this.parent('acelerate');
-        this.run();
         if(this.speed > 50) {
             this.speed = 0;
             alert('CRASH');
         }
+    },
+    run: function() {
+        this.acelerate();
+        this.parent('run');
     }
 
 });

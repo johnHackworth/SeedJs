@@ -12,18 +12,18 @@ Right now, SeedJs requires jQuery. We are working on a small library that substi
 
 Don't get me wrong... Backbone has represented a HUGE step forward for the web application development. Its approach and simplicity makes it just run circles around all the older javascript frameworks. They simply can't compete.
 
-2. But! aren't you saying backbone is broken?
+2. But! aren't you saying Backbone is broken?
 -----------------------------------
 
 No, no, no. Backbone is not broken. Backbone is the work and the vision of Mr. Ashkenas, and sometimes I don't share that same vision related to certain points. But it's perfectly fine, as long as you understand how it works and you are confortable with it!
 
-3. But then, what happens with backbone inheritance? Isn't SeedJs intended to fix it?
+3. But then, what happens with Backbone's inheritance? Isn't SeedJs intended to fix it?
 -----------------------------------
 
 Backbone inheritance system has no problem, it's just the common javascript prototype chaining inheritance. You can read about it in nearly every javascript medium-high level book published. And it's great, works great and it's a great and sane way of approaching to the inheritance problem.
 But... prototypical inheritance differs quite a lot from 'classical' inheritance. When you deal with prototypes, everything, everything, is an object. Backbone classes are objects. With their own properties and their own entity. And that makes a huge difference with the 'classes' of the classical inheritance-based languages.
 
-4. Classes are classes aren't they? You can extend them, makes instances of them, etc...
+4. Classes are classes aren't they? You can extend them, make instances of them, etc...
 -----------------------------------
 
 Let's see an example of what I'm saying. Let's define a backbone model:
@@ -75,7 +75,7 @@ Well, SeedJs transforms all this in a more classical way of inherit. It makes su
 
 Of course! you don't have to use it! You just need to understand how this works and you'll be fine! But when you're programming on several languages at once, it's easy to forgot the peculiarities of any single one of them. And it's easy to forgot about it and just declare a shared pointer. And then, welcome to the hell of strange failings and hard to find bugs!
 
-7. Wait, I've seen the documentation and... Have you add multiple inheritance to backbone? Isn't multiple inheritance evil? are you mad??
+7. Wait, I've seen the documentation and... Have you added multiple inheritance to backbone? Isn't multiple inheritance evil? Are you mad??
 -----------------------------------
 
 MUOHOHOHOHOOHO. You have just discovered my evil plan. Fill the world with multiple inheritance!!!!

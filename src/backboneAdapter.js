@@ -9,14 +9,9 @@
 (function() {
     if (Backbone && Seed) {
         Seed.assimilate.apply(Backbone.Model);
+        window.SeedModel = Seed.marry(Backbone.Model).extend();
 
-        var SeedModel = Backbone.Model.extend();
-        var SeedExtended = Seed.extend();
-        SeedModel.prototype = $.extend(SeedExtended.prototype, SeedModel.prototype);
-
-        Seed.assimilate.apply(Backbone.View);
-        var SeedView = Backbone.View.extend();
-        var SeedExtended = Seed.extend();
-        SeedView.prototype = $.extend(SeedExtended.prototype, SeedView.prototype);
+        // Seed.assimilate.apply(Backbone.View);
+        // window.SeedView = Backbone.View.marry(Seed).extend();
     }
 }).apply(this);

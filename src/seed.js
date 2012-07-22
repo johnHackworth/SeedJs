@@ -1,16 +1,36 @@
+/**********************************************************
+  SeedJs is a library that gives you the superpower of using
+  classical inheritance in javascript. It gives you simulated
+  classes, inheritance and parent-children relation between
+  classes.
+  Also, SeedJs is able to play nice with Backbone (at the very
+  beggining, it was only a extension of the backbone inheritance
+  system to change a little how it works), and its able to insert
+  itself as an ancestor of backbone base classes, transforming
+  the way you use backbone and its inheritance system in something
+  more usable.
+
+  https://github.com/johnHackworth/SeedJs
+
+  Author: Javi Alvarez
+  <javieralvarezlop@gmail.com>
+  http://twitter.com/johnhackworth
+***********************************************************/
 
 (function() {
 
     this._parent = null;
     var cloner = null;
 
+    // SeedJs has as a hard dependence on either pi.js
+    // (Delivered with SeedJs) or jQuery
+    // Right now, I'm going to let jQuery as default,
+    // since, until we improve PiJs, it's more efficient.
+    // _getCloner detects if jQuery or Pi are loaded and
+    // assign the extend/clone functions
     var _getCloner = function() {
-        // SeedJs has as a hard dependence on either pi.js
-        // (Delivered with SeedJs) or jQuery
         var _cloner = null;
-        if (window.pi) {
-            _cloner = window.pi;
-        } else if (window.jQuery) {
+        if (window.jQuery) {
             _cloner = {
                 extend: function(destinationObject, originObject) {
                     return jQuery.extend(true, destinationObject, originObject);
@@ -19,6 +39,8 @@
                     return jQuery.extend(true, {}, clonable);
                 }
             };
+        } else if (window.pi) {
+            _cloner = window.pi;
         } else {
             throw ('SeedJs needs either PiJs or jQuery');
         }
@@ -26,13 +48,19 @@
     }
     cloner = _getCloner();
 
-    // Base Constructor
+    /**
+    * This is the declaration of the global object containing
+    * the base Seed class, which is parent of any other you
+    * want to define
+    *
+    * @class Seed
+    * @constructor
+    */
     var Seed = window.Seed = function(attributes, options) {
         var defaults;
         if (options) {
             this.options = cloner.clone(options);
         }
-        // debugger;
         for (prop in this) {
             if (typeof this[prop] == 'object') {
                 this[prop] = cloner.clone(this[prop]);
@@ -128,32 +156,47 @@
     }
 
     /**
+    * Copy the prototype and properties of the parent class
+    * to a new class element element
+    *
     * @method extend
+    * @param {object} protoProperties
+    * @param {object} classProps
+    * @return {function} new class
     */
     var extend = function(protoProperties, classProps) {
         var child = inherits(this, protoProperties, classProps);
         child.extend = this.extend;
         child.prototype._parent = this.prototype;
-        child.prototype.parent = function(method, options) {
-            if (method) {
-                return this.parentMethod(method, options);
-            } else {
-                return child.prototype._parent;
-            }
-        }
         return child;
     };
     Seed.extend = extend;
 
     /**
+    * Gives you a way to call the methods of the parent class
+    *
+    * @method parant
+    * @method {string} method to be called, if falsy, the
+    *   method returns a reference to parent prototype
+    * @options {object} arguments passed to the called method
+    */
+    Seed.prototype.parent = function(method, options) {
+        if (method) {
+            return this.parentMethod(method, options);
+        } else {
+            return child.prototype._parent;
+        }
+    }
+    /**
     * Empty constructor function to aid in prototype-chain creation.
     *
     * @function baseConstructor
     */
-    var baseConstructor = function() {this.signature = ('a');};
+    var baseConstructor = function() {this.seedJs = true};
 
     /**
-    *
+    * Create a new class object and copy the parent methods and
+    * and attributes to it.
     *
     * @method inherits
     * @param {object} parent Seed we are extending

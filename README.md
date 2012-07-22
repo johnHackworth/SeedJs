@@ -1,11 +1,11 @@
 SeedJs
 ======
 
-SeedJs is a standalone library that provides you the minimal structure to be able to implement classes in your javascrit project. At the same time, it's also a backbone.js extender/fixer. Right now, It deals with backbone inheritance "problems" and fixes them, helping you to be able to have a more "classical" approach to your application architecture.
+SeedJs is a standalone library that provides you the minimal structure to be able to implement classes in your javascript project. At the same time, it's also a backbone.js extender/fixer. Right now, it deals with backbone inheritance "problems" and fixes them, helping you to be able to have a more "classical" approach to your application architecture.
 
-SeedJs provides you with a more robust inheritance system. You can populate your clases with nested objects without sharing them, you can call to parent methods without the ugy parentName.prototype.method.call way and you can think more about your classes and less about how to implement them, in general.
+SeedJs provides you with a more robust inheritance system. You can populate your classes with nested objects without sharing them, you can call to parent methods without the ugly parentName.prototype.method.call way and you can think more about your classes and less about how to implement them, in general.
 
-Right now, SeedJs requires jQuery. We are working in a small library that substitute the clone/extend features of jQuery, to make it available to non-jquery projects, but it's still in the oven.
+Right now, SeedJs requires jQuery. We are working on a small library that substitutes the clone/extend features of jQuery, to make it available to non-jQuery projects, but it's still in the oven.
 
 1. Why do you need to fix Backbone?
 -----------------------------------
@@ -17,13 +17,13 @@ Don't get me wrong... Backbone has represented a HUGE step forward for the web a
 
 No, no, no. Backbone is not broken. Backbone is the work and the vision of Mr. Ashkenas, and sometimes I don't share that same vision related to certain points. But it's perfectly fine, as long as you understand how it works and you are confortable with it!
 
-3. But then, what happens with backbone inheritance? Isn't SeedJs intended to fix them?
+3. But then, what happens with backbone inheritance? Isn't SeedJs intended to fix it?
 -----------------------------------
 
-Backbone inheritance system hasn't any problem, because it's just the common javascript prototype chaining inheritance. You can read about it in nearly every javascript medium-high level book published. And it's great, works great and it's a great and sane way of approaching to the inheritance problem.
-BUT ... Prototypical inheritance differs quite a lot from 'classical' inheritance. When you deal with prototypes, everything, everything, is an object. Backbone classes are objects. With their own properties and their own entity. And that makes a huge difference with the 'classes' of the classical inheritance-based languages.
+Backbone inheritance system has no problem, it's just the common javascript prototype chaining inheritance. You can read about it in nearly every javascript medium-high level book published. And it's great, works great and it's a great and sane way of approaching to the inheritance problem.
+But... prototypical inheritance differs quite a lot from 'classical' inheritance. When you deal with prototypes, everything, everything, is an object. Backbone classes are objects. With their own properties and their own entity. And that makes a huge difference with the 'classes' of the classical inheritance-based languages.
 
-4. Classes are classes isn't it? you can extend them, makes instances of them, etc...
+4. Classes are classes aren't they? You can extend them, makes instances of them, etc...
 -----------------------------------
 
 Let's see an example of what I'm saying. Let's define a backbone model:
@@ -59,28 +59,28 @@ console.log(timeTrial.body.weight)
 console.log(mountain.body.weight)
 ~ 1
 
-Say what??? now our mountain bike weights also 1!!!! Ok, you, level 25 javascripter with a +25 sword made of pure Crockfordite, now what just happens. And now how to avoid it and have seen the failure from the very beggining. But for people who are just approaching or have a basic javascript formation, this is brain-crushing. What? what have just happened??
+Say what??? now our mountain bike weights also 1!!!! Ok, you, level 25 javascripter with a +25 sword made of pure Crockfordite, already know what just happened. Very likely you've seen the failure from the very beginning and for sure you know how to avoid it. But for people who are just approaching or have a basic javascript formation, this is brain-crushing. What? What has just happened??
 
-Ok, what just happened is "everything is an object" and "everything is copied by reference". So when you have this 'body' attribute in the class, you have an object and a reference to it. And when make a instance of this class, every instance is initalizated with a pointer to the same object that the class is pointing. So when you modify the value of one of the members of this object, you are modifiying the value of that data in not only this value in your current object, but also in the prototype and in ALL the instances of this class.
+Ok, what just happened is "everything is an object" and "everything is copied by reference". So when you have this 'body' attribute in the class, you have an object and a reference to it. And when you make a instance of this class, every instance is initalized with a pointer to the same object that the original class is pointing to. So, when you modify the value of one of the members of this object, you are modifiying the value of that data in not only in your current object, but also in the prototype and in ALL the instances of this class.
 
-If you speak fluent python or javascript, you will say "of course! that attribute is a prototype attribute, the instances aren't redefining it, are using the copy from it's parent". But well, if you don't, if you come to Javascriptland from PHP county, Java empire or C isle, you are probably saying "WHAT IS THIS SHIT" right now.
+If you speak fluent python or javascript, you will say "of course! that attribute is a prototype attribute, the instances aren't redefining it, are using the copy from its parent". But well, if you don't, if you come to Javascriptland from PHP county, Java empire or C isle, you are probably saying "WHAT IS THIS SHIT" right now.
 
 5. What SeedJs gives you, then?
 -----------------------------------
 
-Well, SeedJs transforms all this in a more classical way of inherit. It makes sure that a instance doesn't share variables with its siblings or parent. It let you define attributes in the class, so the instances of this class have a copy of this attributes, not a pointer to the same one.
+Well, SeedJs transforms all this in a more classical way of inherit. It makes sure that a instance doesn't share variables with its siblings or parent. It lets you define attributes in the class, so the instances of this class have a copy of this attributes, not a pointer to the same one.
 
 6. Why to use it? Can't you just be careful?
 -----------------------------------
 
-Of course! you don't have to use it! You just need to understand how this work, and you'll be fine! But when you're writing several languages at once, it's easy to forgot the peculiarities of one of them. And it's easy to forgot about it and just declare a shared pointer. And then, welcome to the hell of strange failings and hard to find bugs!
+Of course! you don't have to use it! You just need to understand how this works and you'll be fine! But when you're programming on several languages at once, it's easy to forgot the peculiarities of any single one of them. And it's easy to forgot about it and just declare a shared pointer. And then, welcome to the hell of strange failings and hard to find bugs!
 
 7. Wait, I've seen the documentation and... Have you add multiple inheritance to backbone? Isn't multiple inheritance evil? are you mad??
 -----------------------------------
 
-MUOHOHOHOHOOHO. You just have discover my evil plan. Fill the world with multiple inheritance!!!!
-For real, we all know that giving the masses multiple inheritance is like give industrial grade miniaturized lassers to a bunch of monkeys. But hey, industrial grade miniaturized lassers are quite a tool in the correct monkey hands!
-You don't have to use it. In fact, I'll beg you: Don't use it. You wont probably need it ever. As a good friend of mine say, if you have a whale class and a clock class, and you need a whale who knos what time is it, would you end with a whaleclock class? No, of course!! Please, make you a favour and use composition and live a sane life...
-But maybe sometime, someday... in a dark monday afternoon, you'll find yourself with a bird class and a reptil class... and someone will ask you for a pterodactile class ... and...
+MUOHOHOHOHOOHO. You have just discovered my evil plan. Fill the world with multiple inheritance!!!!
+For real, we all know that giving the masses multiple inheritance is like give industrial grade miniaturized lasers to a bunch of monkeys. But hey, industrial grade miniaturized lasers are quite a tool in the correct monkey hands!
+You don't have to use it. In fact, I'll beg you: Don't use it. You won't probably ever need it. As a good friend of mine says, if you have a whale class and a clock class, and you need a whale who knows what time is it, would you end with a whaleclock class? No, of course!! Please, make yourself a favor and use composition and live a sane life...
+But maybe sometime, someday... in a dark monday afternoon, you'll find yourself with a bird class and a reptil class... and someone will ask you for a pterodactyle class... and...
 
 

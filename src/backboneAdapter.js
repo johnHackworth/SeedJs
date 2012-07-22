@@ -1,18 +1,22 @@
 /*****
 * BackboneAdapter.js
 *
-*
+* Creates a SeedModel and SeedView classes that are direct extensions
+* of Backbone.Model and Backbone.View, with all the Seed.js improvements
+* added.
 */
+
 (function() {
-    UzClass.assimilate.apply(Backbone.Model);
-}
+    if (Backbone && Seed) {
+        Seed.assimilate.apply(Backbone.Model);
 
+        var SeedModel = Backbone.Model.extend();
+        var SeedExtended = Seed.extend();
+        SeedModel.prototype = $.extend(SeedExtended.prototype, SeedModel.prototype);
 
-var UzClassModel = Backbone.Model.extend();
-var UzClassImp = UzClass.extend();
-UzClassModel.prototype = $.extend(UzClassImp.prototype, UzClassModel.prototype);
-
-UzClass.assimilate.apply(Backbone.View);
-var UzClassView = Backbone.View.extend();
-var UzClassImp = UzClass.extend();
-UzClassView.prototype = $.extend(UzClassImp.prototype, UzClassView.prototype);
+        Seed.assimilate.apply(Backbone.View);
+        var SeedView = Backbone.View.extend();
+        var SeedExtended = Seed.extend();
+        SeedView.prototype = $.extend(SeedExtended.prototype, SeedView.prototype);
+    }
+}).apply(this);

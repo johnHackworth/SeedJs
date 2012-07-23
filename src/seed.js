@@ -17,10 +17,20 @@
   http://twitter.com/johnhackworth
 ***********************************************************/
 
+
 (function() {
 
     this._parent = null;
     var cloner = null;
+    var µ;
+
+    if(typeof window != "undefined") {
+        µ = window;
+    } else if (typeof exports != "undefined") {
+        µ = exports;
+    } else {
+        throw ('SeedJs need to be loaded on a browser or node');
+    }
 
     // SeedJs has as a hard dependence on either pi.js
     // (Delivered with SeedJs) or jQuery
@@ -30,7 +40,7 @@
     // assign the extend/clone functions
     var _getCloner = function() {
         var _cloner = null;
-        if (window.jQuery) {
+        if (jQuery) {
             _cloner = {
                 extend: function(destinationObject, originObject) {
                     return jQuery.extend(true, destinationObject, originObject);
@@ -39,9 +49,9 @@
                     return jQuery.extend(true, {}, clonable);
                 }
             };
-        } else if (window.pi) {
+        } else if (µ.pi) {
             throw ('PiJs is still in progress, right now you need jquery');
-//            _cloner = window.pi;
+//            _cloner = µ.pi;
         } else {
             throw ('SeedJs needs either PiJs or jQuery');
         }
@@ -57,12 +67,12 @@
     * @class Seed
     * @constructor
     */
-    var Seed = window.Seed = function(attributes, options) {
+    var Seed = µ.Seed = function(attributes, options) {
         var defaults;
         if (options) {
             this.options = cloner.clone(options);
         }
-        for (prop in this) {
+        for (var prop in this) {
             if (typeof this[prop] == 'object') {
                 this[prop] = cloner.clone(this[prop]);
             }

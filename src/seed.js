@@ -186,7 +186,7 @@
     /**
     * Gives you a way to call the methods of the parent class
     *
-    * @method parant
+    * @method parent
     * @param {string} method to be called, if falsy, the
     *   method returns a reference to parent prototype
     * @options {object} arguments passed to the called method

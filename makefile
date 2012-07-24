@@ -16,3 +16,5 @@ install:
 	npm install chai
 	npm install jquery
 
+doc:
+	yuidoc ./src/ -o ./docs

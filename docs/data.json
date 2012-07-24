@@ -1,0 +1,225 @@
+{
+    "project": {},
+    "files": {
+        "src/backboneAdapter.js": {
+            "name": "src/backboneAdapter.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/pi.js": {
+            "name": "src/pi.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/seed.js": {
+            "name": "src/seed.js",
+            "modules": {},
+            "classes": {
+                "Seed": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "Seed": {
+            "name": "Seed",
+            "shortname": "Seed",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "src/seed.js",
+            "line": 62,
+            "description": "This is the declaration of the global object containing\nthe base Seed class, which is parent of any other you\nwant to define",
+            "is_constructor": 1
+        }
+    },
+    "classitems": [
+        {
+            "file": "src/backboneAdapter.js",
+            "line": 1,
+            "description": "BackboneAdapter.js\n\nCreates a SeedModel and SeedView classes that are direct extensions\nof Backbone.Model and Backbone.View, with all the Seed.js improvements\nadded.",
+            "class": "Seed"
+        },
+        {
+            "file": "src/pi.js",
+            "line": 1,
+            "description": "PiJs is a helper library that provides methods to\nextend and clone javascript objects\n\nauthor: Javier Alvarez\n<javieralvarezlop@gmail.com>\nhttp://twitter.com/johnhackworth",
+            "class": "Seed"
+        },
+        {
+            "file": "src/seed.js",
+            "line": 1,
+            "description": "SeedJs is a library that gives you the superpower of using\nclassical inheritance in javascript. It gives you simulated\nclasses, inheritance and parent-children relation between\nclasses.\nAlso, SeedJs is able to play nice with Backbone (at the very\nbeggining, it was only a extension of the backbone inheritance\nsystem to change a little how it works), and its able to insert\nitself as an ancestor of backbone base classes, transforming\nthe way you use backbone and its inheritance system in something\nmore usable.\n\nhttps://github.com/johnHackworth/SeedJs\n\nAuthor: Javi Alvarez\n<javieralvarezlop@gmail.com>\nhttp://twitter.com/johnhackworth",
+            "class": "Seed"
+        },
+        {
+            "file": "src/seed.js",
+            "line": 84,
+            "description": "Constructor of the newly defined class.",
+            "itemtype": "method",
+            "name": "initialize",
+            "params": [
+                {
+                    "name": "params",
+                    "description": "Data of the new class",
+                    "type": "Object"
+                }
+            ],
+            "class": "Seed"
+        },
+        {
+            "file": "src/seed.js",
+            "line": 94,
+            "description": "Changes the context of this and, if exits in the parent of\nthe current objects, calls the method",
+            "itemtype": "method",
+            "name": "parentMethod",
+            "params": [
+                {
+                    "name": "method",
+                    "description": "Name of the method to be called",
+                    "type": "String"
+                },
+                {
+                    "name": "options",
+                    "description": "Parameters of the called methos",
+                    "type": "Object"
+                }
+            ],
+            "class": "Seed"
+        },
+        {
+            "file": "src/seed.js",
+            "line": 154,
+            "description": "Check if a property is declared in the proto of this element",
+            "itemtype": "method",
+            "name": "isOwnProperty",
+            "params": [
+                {
+                    "name": "property",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "Seed"
+        },
+        {
+            "file": "src/seed.js",
+            "line": 169,
+            "description": "Copy the prototype and properties of the parent class\nto a new class element element",
+            "itemtype": "method",
+            "name": "extend",
+            "params": [
+                {
+                    "name": "protoProperties",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "classProps",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "new class",
+                "type": "Function"
+            },
+            "class": "Seed"
+        },
+        {
+            "file": "src/seed.js",
+            "line": 186,
+            "description": "Gives you a way to call the methods of the parent class",
+            "itemtype": "method",
+            "name": "parent",
+            "params": [
+                {
+                    "name": "method",
+                    "description": "to be called, if falsy, the\n  method returns a reference to parent prototype",
+                    "type": "String"
+                }
+            ],
+            "options": "{object} arguments passed to the called method",
+            "class": "Seed"
+        },
+        {
+            "file": "src/seed.js",
+            "line": 201,
+            "description": "Empty constructor function to aid in prototype-chain creation.",
+            "itemtype": "method",
+            "name": "baseConstructor",
+            "class": "Seed"
+        },
+        {
+            "file": "src/seed.js",
+            "line": 208,
+            "description": "Create a new class object and copy the parent methods and\nand attributes to it.",
+            "itemtype": "method",
+            "name": "inherits",
+            "params": [
+                {
+                    "name": "parent",
+                    "description": "Seed we are extending",
+                    "type": "Object"
+                },
+                {
+                    "name": "protoProperties",
+                    "description": "Attributes we are setting on the new class",
+                    "type": "Object"
+                },
+                {
+                    "name": "staticProperties",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "Seed"
+        },
+        {
+            "file": "src/seed.js",
+            "line": 264,
+            "description": "Allows a Seed to get the behaviour of another one,\nmixing the two into a new one.",
+            "itemtype": "method",
+            "name": "marry",
+            "params": [
+                {
+                    "name": "partner",
+                    "description": "The class we are going to mix with the current one",
+                    "type": "Seed"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Seed"
+            },
+            "class": "Seed"
+        },
+        {
+            "file": "src/seed.js",
+            "line": 282,
+            "description": "This is intended to transform other classes-like objects in descendants of\nthis class. It's intended to be called this .apply(), it needs to be in the\ncontext of the destination object\nExample: Seed.assimilate.apply(Backbone.Model);",
+            "itemtype": "method",
+            "name": "assimilate",
+            "params": [
+                {
+                    "name": "parent",
+                    "description": "",
+                    "type": "Seed"
+                }
+            ],
+            "class": "Seed"
+        }
+    ]
+}

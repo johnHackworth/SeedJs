@@ -11,4 +11,8 @@ mocha:
 		--bail \
 		test/*
 
+install:
+	npm install mocha
+	npm install chai
+	npm install jquery
 

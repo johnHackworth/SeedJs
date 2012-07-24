@@ -224,10 +224,7 @@
             child = protoProperties.constructor;
         } else {
             child = function() {
-                parent.call(this,
-                    cloner.clone(protoProperties),
-                    cloner.clone(staticProperties)
-                );
+                parent.apply(this, arguments);
             };
         }
         // Inherit class (static) properties from parent.
@@ -291,8 +288,7 @@
     var assimilate = function(parent) {
         this.inherits = Seed.inherits;
         this.extend = Seed.extend;
-        this._parent = typeof _parent != "undefined" ? _parent : null;
-        this.parent = typeof parent != "undefined" ? parent : null;
+        this._parent = typeof parent != "undefined" ? parent : null;
         this.marry = Seed.marry;
     }
     Seed.assimilate = assimilate;

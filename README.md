@@ -61,6 +61,18 @@ After that, you only have to make your backbone models descend from SeedModel in
 * Right now, in the current state of development, Backbone views are more problematic. Since when you clone a view object you are also cloning the DOM element that hangs from it, the pointers needed to update the ui are lost. We are working on it and it'll be fixed in the next version!
 
 
+
+c) Development
+
+If you want to install the test enviroment, make sure you have nodejs installed in your machine and just run 'make install' in SeedJs home directory.
+
+After that, you can run the test running 'make mocha' in your terminal.
+
+If you don't have node.js or just don't want to install it, I have included an html runner for the tests. Just make some changes, open tests.html in a browser and see if something went wrong!
+
+
+
+
 So ok, what is all this about?
 ==============================
 

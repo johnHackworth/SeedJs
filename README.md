@@ -1,11 +1,68 @@
 SeedJs
 ======
+Version 0.10
 
 SeedJs is a standalone library that provides you the minimal structure to be able to implement classes in your javascript project. At the same time, it's also a backbone.js extender/fixer. Right now, it deals with backbone inheritance "problems" and fixes them, helping you to be able to have a more "classical" approach to your application architecture.
 
 SeedJs provides you with a more robust inheritance system. You can populate your classes with nested objects without sharing them, you can call to parent methods without the ugly parentName.prototype.method.call way and you can think more about your classes and less about how to implement them, in general.
 
 Right now, SeedJs requires jQuery. We are working on a small library that substitutes the clone/extend features of jQuery, to make it available to non-jQuery projects, but it's still in the oven.
+
+Quick Intro
+===========
+
+a) Standalone:
+
+All you need is to include seed.js or seed.min.js in your project, and you are done. You can now declare classes just extending from the base class "Seed".
+
+An quick example:
+
+> var Droid = Seed.extend({
+>     'owner': null,
+>     'type': null
+> })
+
+You just have defined your first Seed Class!! from now on, you can define descendant classes or just instance some objects.
+
+> var ProtocolDroid = Droid.extend({
+>   'type': 'protocol',
+>    'languages':['common', 'Ssi-ruuk']
+>    'state': {
+>        'servos': 'ok'
+>    },
+>    translate: function(language, content) {
+>       return "i'm a javascript droid, so i'm too dumb to translate this";
+>    }
+> })
+>
+> var C3PO = new ProtocolDroid();
+
+And also, of course, you can use the parent methods with the usual javascript ugly prototype syntax
+
+> var ImperialProtocolDroid = ProtocolDroid.extend({
+>    translate: function(language, content) {
+>        if(language === 'common') {
+>            return content;
+>        } else {
+>            return this.parent('translate', language, content);
+>        }
+>    }
+> })
+
+And that's it! enjoy your classes!!
+
+
+b) Integrated with BackboneJs
+
+Just include seed.js or seed.min.js just after your backbone requires... SeedJs will bind itself to Backbone models and (partially*) to backbone views.
+
+After that, you only have to make your backbone models descend from SeedModel instead from Backbone.Model, and you'll have all the power from Seed on your backbone code.
+
+* Right now, in the current state of development, Backbone views are more problematic. Since when you clone a view object you are also cloning the DOM element that hangs from it, the pointers needed to update the ui are lost. We are working on it and it'll be fixed in the next version!
+
+
+So ok, what is all this about?
+==============================
 
 1. Why do you need to fix Backbone?
 -----------------------------------

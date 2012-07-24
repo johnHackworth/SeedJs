@@ -291,8 +291,8 @@
     var assimilate = function(parent) {
         this.inherits = Seed.inherits;
         this.extend = Seed.extend;
-        this._parent = _parent ? _parent : null;
-        this.parent = parent ? parent : null;
+        this._parent = typeof _parent != "undefined" ? _parent : null;
+        this.parent = typeof parent != "undefined" ? parent : null;
         this.marry = Seed.marry;
     }
     Seed.assimilate = assimilate;

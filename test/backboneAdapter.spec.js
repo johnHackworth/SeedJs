@@ -24,7 +24,7 @@ if(typeof exports != "undefined") { // run on node.js
     var expect = chai.expect;
 }
 
-describe('SeedJs ', function() {
+describe('The backbone adapter of Seed ', function() {
     beforeEach(function() {
         this.Model = window.SeedModel.extend()
         this.Starship = this.Model.extend({'weight':2000,
@@ -84,8 +84,6 @@ describe('SeedJs ', function() {
 
 
     })
-
-    it('should be able')
 
 
 });

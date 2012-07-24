@@ -15,7 +15,6 @@
 if(typeof exports != "undefined") { // run on node.js
     var expect = require("chai").expect
     $ = jQuery = require("jquery")
-    window = {}
     var Seed = require("../src/seed.js")
 } else {
     var expect = chai.expect;

@@ -19,7 +19,10 @@
 
     if (Backbone && µ.Seed) {
         µ.Seed.assimilate.apply(Backbone.Model);
-        µ.SeedModel = µ.Seed.marry(Backbone.Model).extend();
+        µ.SeedModel = Backbone.Model.extend();
+        var classImplementation = µ.Seed.extend();
+        µ.Seed.marry(Backbone.Model).extend();
+        µ.SeedModel.prototype = $.extend(true, classImplementation.prototype, µ.SeedModel.prototype);
 
         // Seed.assimilate.apply(Backbone.View);
         // window.SeedView = Backbone.View.marry(Seed).extend();

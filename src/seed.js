@@ -42,11 +42,31 @@
         var _cloner = null;
         if (jQuery) {
             _cloner = {
+                _baseExtend: function(deep, dest, origin) {
+                    var properties = {};
+                    for (var prop in origin) {
+                        if (prop.substr(0, 2) === '__') {
+                            properties[prop] = origin[prop];
+                            delete origin[prop];
+                        }
+                    }
+                    var result = jQuery.extend(deep, dest, origin);
+                    for (var prop in properties) {
+                        origin[prop] = properties[prop];
+                    }
+
+                    return result;
+                },
                 extend: function(destinationObject, originObject) {
-                    return jQuery.extend(true, destinationObject, originObject);
+                    var tempObject = this._baseExtend(true, {}, destinationObject);
+                    return this._baseExtend(true, tempObject, originObject);
                 },
                 clone: function(clonable) {
-                    return jQuery.extend(true, {}, clonable);
+                    return this._baseExtend(true, {}, clonable);
+                },
+                assign: function(destinationObject, originObject) {
+                    var tempObject = this._baseExtend(false, {}, destinationObject);
+                    return this._baseExtend(false, tempObject, originObject);
                 }
             };
         } else if (µ.pi) {
@@ -134,7 +154,7 @@
 
             // if the currently evaluated prototype owns this method and the executeNextCall
             // has been marked, we run the method of this prototype
-            if (currentParent.isOwnProperty(method) && options.executeNextCall) {
+            if (currentParent.hasOwnProperty(method) && options.executeNextCall) {
                 result = currentParent[method].call(this, options);
             }
             // if not, we evaluate the parent of the currently evaluated prototype
@@ -159,8 +179,8 @@
     * @return {boolean}
     */
     Seed.prototype.isOwnProperty = function(property) {
-        if (this.__class__) {
-            return this.__class__.hasOwnProperty(property)
+        if (this._class) {
+            return this._class.hasOwnProperty(property)
         } else {
             return this.hasOwnProperty(property)
         }
@@ -179,6 +199,7 @@
         var child = inherits(this, protoProperties, classProps);
         child.extend = this.extend;
         child.prototype._parent = this.prototype;
+        child.prototype._class = this.prototype;
         return child;
     };
     Seed.extend = extend;
@@ -228,7 +249,7 @@
             };
         }
         // Inherit class (static) properties from parent.
-        child = cloner.extend(child, parent);
+//        child = cloner.assign(child, parent);
 
         // Set the prototype chain to inherit from `parent`, without calling
         // `parent`'s constructor function.
@@ -249,10 +270,10 @@
         child.prototype.constructor = child;
 
         // shortcut to element "class"
-        child.prototype.__class__ = child.prototype
+        // child.prototype.__class__ = child.prototype
 
         // shortcut to parent prototype
-        child.__super__ = parent.prototype;
+        // child.__super__ = parent.prototype;
 
         return child;
     };

@@ -1,0 +1,10 @@
+{
+    "name": "SeedJs",
+    "description": "  SeedJs is a library that gives you the superpower of using classical inheritance in javascript. It gives you simulated classes, inheritance and parent-children relation between classes.",
+    "version": "0.10",
+    "url": "http://github.com/johnhackworth/SeedJs",
+    "logo": "../img/logo.png",
+    "options": {
+        "outdir": "../docs"
+    }
+}

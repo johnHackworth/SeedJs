@@ -11,17 +11,20 @@
 
     if(typeof window != "undefined") {
         µ = window;
+        Seed = window.Seed;
     } else if (typeof exports != "undefined") {
         µ = exports;
+        ImportedSeed = require('./seed.js');
+        Seed = ImportedSeed.Seed;
+        Backbone = require('backbone');
     } else {
         throw ('SeedJs need to be loaded on a browser or node');
     }
-
-    if (Backbone && µ.Seed) {
-        µ.Seed.assimilate.apply(Backbone.Model);
+    if (Backbone && Seed) {
+        Seed.assimilate.apply(Backbone.Model);
         µ.SeedModel = Backbone.Model.extend();
-        var classImplementation = µ.Seed.extend();
-        µ.Seed.marry(Backbone.Model).extend();
+        var classImplementation = Seed.extend();
+        // µ.SeedModel = Seed.marry(Backbone.Model).extend();
         µ.SeedModel.prototype = $.extend(true, classImplementation.prototype, µ.SeedModel.prototype);
 
         // Seed.assimilate.apply(Backbone.View);

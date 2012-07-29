@@ -12,17 +12,19 @@
   http://twitter.com/johnhackworth
 
 ****************/
+var root = (typeof exports != 'undefined' ? exports : window);
 if(typeof exports != "undefined") { // run on node.js
     var expect = require("chai").expect
     $ = jQuery = require("jquery")
-    var Seed = require("../src/seed.js")
+    var Seed = require("../src/seed.js");
+    root.Seed = Seed.Seed;
 } else {
     var expect = chai.expect;
 }
 
 describe('SeedJs ', function() {
     beforeEach(function() {
-        this.Vehicle = window.Seed.extend({'wheels':0,
+        this.Vehicle = root.Seed.extend({'wheels':0,
             'state': {
                 'speed':0,
                 'pos': {
@@ -46,7 +48,7 @@ describe('SeedJs ', function() {
     })
 
     it('should be able to create a Seed class', function() {
-        var SeedClass = window.Seed.extend({'attr':1})
+        var SeedClass = root.Seed.extend({'attr':1})
         expect(SeedClass).exist
     })
 

@@ -12,21 +12,21 @@
   http://twitter.com/johnhackworth
 
 ****************/
+var root = (typeof exports != 'undefined' ? exports : window);
 if(typeof exports != "undefined") { // run on node.js
     var expect = require("chai").expect
     $ = jQuery = require("jquery")
     Backbone = require("backbone")
-    window = exports
     var Seed = require("../src/seed.js")
     var backboneAdapter = require("../src/backboneAdapter.js")
-
+    root.SeedModel = backboneAdapter.SeedModel;
 } else {
     var expect = chai.expect;
 }
 
 describe('The backbone adapter of Seed ', function() {
     beforeEach(function() {
-        this.Model = window.SeedModel.extend()
+        this.Model = root.SeedModel.extend()
         this.Starship = this.Model.extend({'weight':2000,
             'weapons': {
                 'laser': {
@@ -55,6 +55,7 @@ describe('The backbone adapter of Seed ', function() {
     })
 
     it('should be able to instantiate a backbone model object', function() {
+
         var m = new this.Model({"prop":1});
 
         expect(m).exist
@@ -81,9 +82,8 @@ describe('The backbone adapter of Seed ', function() {
         var enterprise = new this.Starship({name:"USS enterprise"})
         expect(millenium.weapons.laser.loaded).to.beTruthy
         expect(enterprise.get('name')).to.equal('USS enterprise');
-
-
     })
+
 
 
 });

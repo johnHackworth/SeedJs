@@ -51,7 +51,7 @@ describe('The backbone adapter of Seed ', function() {
     it('should be able to create a backbone model class derived from Seed', function() {
 
         expect(this.Model).exist
-        // expect(this.Model.parent).to.equal(null)
+        expect(this.Model._parent).to.not.be.ok
     })
 
     it('should be able to instantiate a backbone model object', function() {
@@ -84,6 +84,30 @@ describe('The backbone adapter of Seed ', function() {
         expect(enterprise.get('name')).to.equal('USS enterprise');
     })
 
+    it('should accept objects as parameters and not duplicate them', function() {
+        var xwing = new this.Starship({"pilot":{"name":"Luke"}});
+        var tiewing = new this.Starship({"pilot":{"name":"Anakin"}});
+
+        expect(xwing.get('pilot').name).to.equal("Luke");
+
+        xwing.get('pilot').name = 'Wesley';
+
+        expect(xwing.get('pilot').name).to.equal("Wesley");
+        expect(tiewing.get('pilot').name).to.equal("Anakin");
+    })
+
+    it('should fire the backbone events when changed', function() {
+        var xwing = new this.Starship({"pilot":{"name":"Luke"}});
+        var isLukePilot = true;
+        xwing.bind('change', function() {
+            isLukePilot = false;
+        });
+
+        xwing.set({"pilot": {"name": "Han"}});
+
+        expect(isLukePilot).to.be.not.ok
+        expect(xwing.get('pilot').name).to.equal("Han");
+    });
 
 
 });

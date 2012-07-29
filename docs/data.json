@@ -1,5 +1,11 @@
 {
-    "project": {},
+    "project": {
+        "name": "SeedJs",
+        "description": "  SeedJs is a library that gives you the superpower of using classical inheritance in javascript. It gives you simulated classes, inheritance and parent-children relation between classes.",
+        "version": "0.10",
+        "url": "http://github.com/johnhackworth/SeedJs",
+        "logo": "../img/logo.png"
+    },
     "files": {
         "src/backboneAdapter.js": {
             "name": "src/backboneAdapter.js",
@@ -36,7 +42,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "src/seed.js",
-            "line": 62,
+            "line": 82,
             "description": "This is the declaration of the global object containing\nthe base Seed class, which is parent of any other you\nwant to define",
             "is_constructor": 1
         }
@@ -62,7 +68,7 @@
         },
         {
             "file": "src/seed.js",
-            "line": 84,
+            "line": 104,
             "description": "Constructor of the newly defined class.",
             "itemtype": "method",
             "name": "initialize",
@@ -77,7 +83,7 @@
         },
         {
             "file": "src/seed.js",
-            "line": 94,
+            "line": 114,
             "description": "Changes the context of this and, if exits in the parent of\nthe current objects, calls the method",
             "itemtype": "method",
             "name": "parentMethod",
@@ -97,7 +103,7 @@
         },
         {
             "file": "src/seed.js",
-            "line": 154,
+            "line": 174,
             "description": "Check if a property is declared in the proto of this element",
             "itemtype": "method",
             "name": "isOwnProperty",
@@ -116,7 +122,7 @@
         },
         {
             "file": "src/seed.js",
-            "line": 169,
+            "line": 189,
             "description": "Copy the prototype and properties of the parent class\nto a new class element element",
             "itemtype": "method",
             "name": "extend",
@@ -140,7 +146,7 @@
         },
         {
             "file": "src/seed.js",
-            "line": 186,
+            "line": 207,
             "description": "Gives you a way to call the methods of the parent class",
             "itemtype": "method",
             "name": "parent",
@@ -156,7 +162,7 @@
         },
         {
             "file": "src/seed.js",
-            "line": 201,
+            "line": 222,
             "description": "Empty constructor function to aid in prototype-chain creation.",
             "itemtype": "method",
             "name": "baseConstructor",
@@ -164,7 +170,7 @@
         },
         {
             "file": "src/seed.js",
-            "line": 208,
+            "line": 229,
             "description": "Create a new class object and copy the parent methods and\nand attributes to it.",
             "itemtype": "method",
             "name": "inherits",
@@ -189,7 +195,7 @@
         },
         {
             "file": "src/seed.js",
-            "line": 264,
+            "line": 282,
             "description": "Allows a Seed to get the behaviour of another one,\nmixing the two into a new one.",
             "itemtype": "method",
             "name": "marry",
@@ -208,7 +214,7 @@
         },
         {
             "file": "src/seed.js",
-            "line": 282,
+            "line": 300,
             "description": "This is intended to transform other classes-like objects in descendants of\nthis class. It's intended to be called this .apply(), it needs to be in the\ncontext of the destination object\nExample: Seed.assimilate.apply(Backbone.Model);",
             "itemtype": "method",
             "name": "assimilate",

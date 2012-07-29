@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src&#x2F;backboneAdapter.js</title>
+    <title>src&#x2F;backboneAdapter.js - SeedJs</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.1&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -15,11 +15,11 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="..&#x2F;assets/css/logo.png" title=""></h1>
+                <h1><img src="..&#x2F;img&#x2F;logo.png" title="SeedJs"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: </em>
+            <em>API Docs for: 0.10</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -95,9 +95,25 @@
 *&#x2F;
 
 (function() {
+    var µ;
+
+    if(typeof window != &quot;undefined&quot;) {
+        µ = window;
+        Seed = window.Seed;
+    } else if (typeof exports != &quot;undefined&quot;) {
+        µ = exports;
+        ImportedSeed = require(&#x27;.&#x2F;seed.js&#x27;);
+        Seed = ImportedSeed.Seed;
+        Backbone = require(&#x27;backbone&#x27;);
+    } else {
+        throw (&#x27;SeedJs need to be loaded on a browser or node&#x27;);
+    }
     if (Backbone &amp;&amp; Seed) {
         Seed.assimilate.apply(Backbone.Model);
-        window.SeedModel = Seed.marry(Backbone.Model).extend();
+        µ.SeedModel = Backbone.Model.extend();
+        var classImplementation = Seed.extend();
+        &#x2F;&#x2F; µ.SeedModel = Seed.marry(Backbone.Model).extend();
+        µ.SeedModel.prototype = $.extend(true, classImplementation.prototype, µ.SeedModel.prototype);
 
         &#x2F;&#x2F; Seed.assimilate.apply(Backbone.View);
         &#x2F;&#x2F; window.SeedView = Backbone.View.marry(Seed).extend();

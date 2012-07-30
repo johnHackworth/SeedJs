@@ -64,6 +64,7 @@ After that, you only have to make your backbone models descend from SeedModel in
 
 
 c) Development
+--------------
 
 If you want to install the test enviroment, make sure you have nodejs installed in your machine and just run 'make install' in SeedJs home directory.
 

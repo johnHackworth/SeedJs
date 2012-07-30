@@ -17,37 +17,36 @@ All you need is to include seed.js or seed.min.js in your project, and you are d
 
 An quick example:
 
-> var Droid = Seed.extend({
->     'owner': null,
->     'type': null
-> })
+    var Droid = Seed.extend({
+        'owner': null,
+        'type': null
+    })
 
 You just have defined your first Seed Class!! from now on, you can define descendant classes or just instance some objects.
 
-> var ProtocolDroid = Droid.extend({
->   'type': 'protocol',
->    'languages':['common', 'Ssi-ruuk']
->    'state': {
->        'servos': 'ok'
->    },
->    translate: function(language, content) {
->       return "i'm a javascript droid, so i'm too dumb to translate this";
->    }
-> })
->
-> var C3PO = new ProtocolDroid();
+    var ProtocolDroid = Droid.extend({
+        'type': 'protocol',
+        'languages':['common', 'Ssi-ruuk']
+        'state': {
+            'servos': 'ok'
+        },
+        translate: function(language, content) {
+            return "i'm a javascript droid, so i'm too dumb to translate this";
+        }
+    })
+    var C3PO = new ProtocolDroid();
 
 And also, of course, you can use the parent methods with the usual javascript ugly prototype syntax
 
-> var ImperialProtocolDroid = ProtocolDroid.extend({
->    translate: function(language, content) {
->        if(language === 'common') {
->            return content;
->        } else {
->            return this.parent('translate', language, content);
->        }
->    }
-> })
+    var ImperialProtocolDroid = ProtocolDroid.extend({
+        translate: function(language, content) {
+            if(language === 'common') {
+                return content;
+            } else {
+                return this.parent('translate', language, content);
+            }
+        }
+    })
 
 And that's it! enjoy your classes!!
 
@@ -97,36 +96,36 @@ But... prototypical inheritance differs quite a lot from 'classical' inheritance
 
 Let's see an example of what I'm saying. Let's define a backbone model:
 
-var Bicycle = Backbone.Model.extend({
-    defaults: {
-        rider: null,
-        team: null
-    },
-    body: {
-        'material': 'steel',
-        'weight': 3
-    },
-    wheels: 2,
-    name: 'Bike that goes fast'
-})
+    var Bicycle = Backbone.Model.extend({
+        defaults: {
+            rider: null,
+            team: null
+        },
+        body: {
+            'material': 'steel',
+            'weight': 3
+        },
+        wheels: 2,
+        name: 'Bike that goes fast'
+    })
 
 ok, we have created the prototype of a bicycle object, we have defined a couple of defaults attributes (the ones we want to be sent to our REST layer), and a couple of properties we need to do the proccessing but not to be persisted. Nothing bad, isn't it?
 
 ok, let's instance a couple of bikes...
 
-var timeTrial = new Bicycle();
-var mountain = new Bicycle();
+    var timeTrial = new Bicycle();
+    var mountain = new Bicycle();
 
 But wait... our time trial bike is much lighter than the mountain one, so let's chage it's weight:
 
-timeTrial.body.weight = 1
+    timeTrial.body.weight = 1
 
 nice! let's see how much our bikes now weight!
 
-console.log(timeTrial.body.weight)
-~ 1
-console.log(mountain.body.weight)
-~ 1
+    console.log(timeTrial.body.weight)
+    ~ 1
+    console.log(mountain.body.weight)
+    ~ 1
 
 Say what??? now our mountain bike weights also 1!!!! Ok, you, level 25 javascripter with a +25 sword made of pure Crockfordite, already know what just happened. Very likely you've seen the failure from the very beginning and for sure you know how to avoid it. But for people who are just approaching or have a basic javascript formation, this is brain-crushing. What? What has just happened??
 
@@ -152,4 +151,7 @@ For real, we all know that giving the masses multiple inheritance is like give i
 You don't have to use it. In fact, I'll beg you: Don't use it. You won't probably ever need it. As a good friend of mine says, if you have a whale class and a clock class, and you need a whale who knows what time is it, would you end with a whaleclock class? No, of course!! Please, make yourself a favor and use composition and live a sane life...
 But maybe sometime, someday... in a dark monday afternoon, you'll find yourself with a bird class and a reptile class... and someone will ask you for a pterodactyle class... and...
 
+8. Seed? What kind of name is that?
+-----------------------------------
 
+WOT!!!!! Haven't you read "The Diamond Age: Or a young's lady illustrated primer" by Neal Stephenson??? make yourself a favor an <a href="http://lstfy.eu/#i286">get it!!!</a>

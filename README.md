@@ -17,10 +17,10 @@ All you need is to include seed.js or seed.min.js in your project, and you are d
 
 An quick example:
 
->    var Droid = Seed.extend({
->       'owner': null,
->       'type': null
->    })
+    var Droid = Seed.extend({
+       'owner': null,
+       'type': null
+    })
 
 You just have defined your first Seed Class!! from now on, you can define descendant classes or just instance some objects.
 

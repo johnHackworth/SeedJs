@@ -1,142 +1,3 @@
-/*******************************************
-  PiJs is a helper library that provides methods to
-  extend and clone javascript objects
-
-  author: Javier Alvarez
-  <javieralvarezlop@gmail.com>
-  http://twitter.com/johnhackworth
-*******************************************/
-var pi = function() {
-    var _cloneArray = function(arr)  {
-        var _clonedArr = [];
-        for (var el in arr) {
-            _clonedArr.push(_cloneAll(arr[el]));
-        }
-        return _clonedArr;
-    }
-
-    var _copyArray = function(arrayDest, arrayOrigin, overwrite)  {
-        var _clonedArr = [];
-        var longest = arrayDest.length > arrayOrigin.length ?
-                                            arrayDest.length :
-                                                arrayOrigin.length;
-        for (var i = 0; i < longest; i++) {
-            _clonedArr[i] = _copyAll(arrayDest[i], arrayOrigin[i], overwrite);
-        }
-        return _clonedArr;
-    }
-
-    var _clonedObjs = [];
-    var _copiedObjs = [];
-
-    var _cloneObj = function(obj) {
-        if (typeof obj != 'object') {
-            return obj;
-        }
-        var objAlreadyInsertedPosition = _clonedObjs.indexOf(obj);
-        if (objAlreadyInsertedPosition >= 0) {
-            return undefined;
-        } else {
-            _clonedObjs.push(obj);
-        }
-
-        var _clonedObj = {};
-        var _clonedValue = null;
-        for (var prop in obj) {
-            if (prop //&&
-                    // obj.hasOwnProperty(prop) &&
-                        // !prop.indexOf('_') == 0
-                        )
-            {
-                _clonedValue = _cloneAll(obj[prop]);
-                _clonedObj[prop] = _clonedValue;
-            }
-        }
-
-        return _clonedObj;
-    }
-
-    var _copyObj = function(objDest, objOrig, overwrite) {
-        if (typeof objDest != 'object') {
-            return _clone(objOrg);
-        }
-        var objAlreadyCopiedPosition = _copiedObjs.indexOf(objOrig);
-        if (objAlreadyCopiedPosition >= 0) {
-            return undefined;
-        } else {
-            _copiedObjs.push(objOrig);
-        }
-
-        var _clonedObj = _clone(objDest);
-        for (var prop in objOrig) {
-            if (objOrig.hasOwnProperty(prop)) {
-
-                _clonedObj[prop] = _copyAll(objDest[prop], objOrig[prop], overwrite);
-            }
-        }
-        return _clonedObj;
-    }
-
-    var _cloneAll = function(param) {
-        if (param === undefined) {
-            return undefined;
-        } else if (param === null) {
-            return null;
-        } else if (Object.prototype.toString.call(param) === '[object Array]') {
-            return _cloneArray(param);
-        } else if (typeof param === 'object') {
-
-            return _cloneObj(param);
-            // doesn't support regexps yet.
-        } else if (typeof param === 'function') {
-            return param;
-        } else {
-            return param;
-        }
-    }
-
-    var _copyAll = function(entityDest, entityOrg, overwrite) {
-        if (entityDest == null || entityDest == undefined) {
-            return _clone(entityOrg);
-        } else if (entityOrg == null || entityOrg == undefined) {
-            return _clone(entityDest);
-        } else if (Object.prototype.toString.call(entityOrg) === '[object Array]') {
-            return _copyArray(entityDest, entityOrg, overwrite);
-        } else if (typeof entityOrg === 'object') {
-            return _copyObj(entityDest, entityOrg, overwrite);
-            // doesn't support regexps yet.
-        } else {
-            if (overwrite) {
-                return entityOrg;
-            } else {
-                return entityDest;
-            }
-
-        }
-    }
-
-    var _copy = function(entityDest, entityOrg, overwrite) {
-        _copiedObjs = [];
-        return _copyAll(entityDest, entityOrg, overwrite);
-    }
-
-    var _clone = function(clonable) {
-        _clonedObjs = [];
-        return _cloneAll(clonable);
-    }
-
-    return {
-        extend: function(destinationObject, originObject) {
-            return _copy(destinationObject, originObject, true);
-        },
-        clone: function(clonable) {
-            return _clone(clonable);
-        },
-        copy: function(entityDest, entityOrg, overwrite) {
-            return _copy(entityDest, entityOrg, overwrite);
-        }
-    };
-}();
 /**********************************************************
   SeedJs is a library that gives you the superpower of using
   classical inheritance in javascript. It gives you simulated
@@ -156,10 +17,20 @@ var pi = function() {
   http://twitter.com/johnhackworth
 ***********************************************************/
 
+
 (function() {
 
     this._parent = null;
     var cloner = null;
+    var µ;
+
+    if(typeof window != "undefined") {
+        µ = window;
+    } else if (typeof exports != "undefined") {
+        µ = exports;
+    } else {
+        throw ('SeedJs need to be loaded on a browser or node');
+    }
 
     // SeedJs has as a hard dependence on either pi.js
     // (Delivered with SeedJs) or jQuery
@@ -169,18 +40,38 @@ var pi = function() {
     // assign the extend/clone functions
     var _getCloner = function() {
         var _cloner = null;
-        if (window.jQuery) {
+        if (jQuery) {
             _cloner = {
+                _baseExtend: function(deep, dest, origin) {
+                    var properties = {};
+                    for (var prop in origin) {
+                        if (prop.substr(0, 2) === '__') {
+                            properties[prop] = origin[prop];
+                            delete origin[prop];
+                        }
+                    }
+                    var result = jQuery.extend(deep, dest, origin);
+                    for (var prop in properties) {
+                        origin[prop] = properties[prop];
+                    }
+
+                    return result;
+                },
                 extend: function(destinationObject, originObject) {
-                    return jQuery.extend(true, destinationObject, originObject);
+                    var tempObject = this._baseExtend(true, {}, destinationObject);
+                    return this._baseExtend(true, tempObject, originObject);
                 },
                 clone: function(clonable) {
-                    return jQuery.extend(true, {}, clonable);
+                    return this._baseExtend(true, {}, clonable);
+                },
+                assign: function(destinationObject, originObject) {
+                    var tempObject = this._baseExtend(false, {}, destinationObject);
+                    return this._baseExtend(false, tempObject, originObject);
                 }
             };
-        } else if (window.pi) {
+        } else if (µ.pi) {
             throw ('PiJs is still in progress, right now you need jquery');
-//            _cloner = window.pi;
+//            _cloner = µ.pi;
         } else {
             throw ('SeedJs needs either PiJs or jQuery');
         }
@@ -196,12 +87,12 @@ var pi = function() {
     * @class Seed
     * @constructor
     */
-    var Seed = window.Seed = function(attributes, options) {
+    var Seed = µ.Seed = function(attributes, options) {
         var defaults;
         if (options) {
             this.options = cloner.clone(options);
         }
-        for (prop in this) {
+        for (var prop in this) {
             if (typeof this[prop] == 'object') {
                 this[prop] = cloner.clone(this[prop]);
             }
@@ -263,7 +154,7 @@ var pi = function() {
 
             // if the currently evaluated prototype owns this method and the executeNextCall
             // has been marked, we run the method of this prototype
-            if (currentParent.isOwnProperty(method) && options.executeNextCall) {
+            if (currentParent.hasOwnProperty(method) && options.executeNextCall) {
                 result = currentParent[method].call(this, options);
             }
             // if not, we evaluate the parent of the currently evaluated prototype
@@ -288,8 +179,8 @@ var pi = function() {
     * @return {boolean}
     */
     Seed.prototype.isOwnProperty = function(property) {
-        if (this.__class__) {
-            return this.__class__.hasOwnProperty(property)
+        if (this._class) {
+            return this._class.hasOwnProperty(property)
         } else {
             return this.hasOwnProperty(property)
         }
@@ -308,6 +199,7 @@ var pi = function() {
         var child = inherits(this, protoProperties, classProps);
         child.extend = this.extend;
         child.prototype._parent = this.prototype;
+        child.prototype._class = this.prototype;
         return child;
     };
     Seed.extend = extend;
@@ -315,8 +207,8 @@ var pi = function() {
     /**
     * Gives you a way to call the methods of the parent class
     *
-    * @method parant
-    * @method {string} method to be called, if falsy, the
+    * @method parent
+    * @param {string} method to be called, if falsy, the
     *   method returns a reference to parent prototype
     * @options {object} arguments passed to the called method
     */
@@ -353,14 +245,11 @@ var pi = function() {
             child = protoProperties.constructor;
         } else {
             child = function() {
-                parent.call(this,
-                    cloner.clone(protoProperties),
-                    cloner.clone(staticProperties)
-                );
+                parent.apply(this, arguments);
             };
         }
         // Inherit class (static) properties from parent.
-        child = cloner.extend(child, parent);
+//        child = cloner.assign(child, parent);
 
         // Set the prototype chain to inherit from `parent`, without calling
         // `parent`'s constructor function.
@@ -381,10 +270,10 @@ var pi = function() {
         child.prototype.constructor = child;
 
         // shortcut to element "class"
-        child.prototype.__class__ = child.prototype
+        // child.prototype.__class__ = child.prototype
 
         // shortcut to parent prototype
-        child.__super__ = parent.prototype;
+        // child.__super__ = parent.prototype;
 
         return child;
     };
@@ -420,8 +309,7 @@ var pi = function() {
     var assimilate = function(parent) {
         this.inherits = Seed.inherits;
         this.extend = Seed.extend;
-        this._parent = _parent ? _parent : null;
-        this.parent = parent ? parent : null;
+        this._parent = typeof parent != "undefined" ? parent : null;
         this.marry = Seed.marry;
     }
     Seed.assimilate = assimilate;
@@ -436,9 +324,25 @@ var pi = function() {
 */
 
 (function() {
+    var µ;
+
+    if(typeof window != "undefined") {
+        µ = window;
+        Seed = window.Seed;
+    } else if (typeof exports != "undefined") {
+        µ = exports;
+        ImportedSeed = require('./seed.js');
+        Seed = ImportedSeed.Seed;
+        Backbone = require('backbone');
+    } else {
+        throw ('SeedJs need to be loaded on a browser or node');
+    }
     if (Backbone && Seed) {
         Seed.assimilate.apply(Backbone.Model);
-        window.SeedModel = Seed.marry(Backbone.Model).extend();
+        µ.SeedModel = Backbone.Model.extend();
+        var classImplementation = Seed.extend();
+        // µ.SeedModel = Seed.marry(Backbone.Model).extend();
+        µ.SeedModel.prototype = $.extend(true, classImplementation.prototype, µ.SeedModel.prototype);
 
         // Seed.assimilate.apply(Backbone.View);
         // window.SeedView = Backbone.View.marry(Seed).extend();

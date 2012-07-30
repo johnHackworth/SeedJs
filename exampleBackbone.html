@@ -1,4 +1,6 @@
 <html>
+<head>
+</head>
 <body>
     <div class="container">Hello world</div>
 
@@ -64,7 +66,7 @@ var Yamaha = Moto.extend({
     }
 });
 
-var VehiculoView = Backbone.View.extend({
+var VehiculoView = SeedView.extend({
     model: Vehiculo,
     events: {
         'click a':'run'
@@ -85,6 +87,13 @@ var VehiculoView = Backbone.View.extend({
     }
 })
 
+var MotoView = VehiculoView.extend({
+    render: function() {
+        this.parent('render');
+        $(this.el).append(" <- click this to brrrrrrrroum");
+    }
+})
+
 $(document).ready(function() {
 
     window.v = new Vehiculo();
@@ -100,7 +109,7 @@ $(document).ready(function() {
     });
     cView.render();
     window.y = new Yamaha();
-    window.yView = new VehiculoView({
+    window.yView = new MotoView({
         el: $('.containerYamaha '),
         model: y
     });

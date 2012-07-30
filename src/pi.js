@@ -6,6 +6,8 @@
   <javieralvarezlop@gmail.com>
   http://twitter.com/johnhackworth
 *******************************************/
+
+// Still in development, not functional right now
 var pi = function() {
     var _cloneArray = function(arr)  {
         var _clonedArr = [];

@@ -13,7 +13,7 @@ Quick Intro
 
 a) Standalone:
 
-All you need is to include seed.js or seed.min.js in your project, and you are done. You can now declare classes just extending from the base class "Seed".
+All you need is to include <a href="https://raw.github.com/johnHackworth/SeedJs/master/bin/seed.js">seed.js</a> or <a href="https://raw.github.com/johnHackworth/SeedJs/master/bin/seed.min.js">seed.min.js</a> in your project, and you are done. You can now declare classes just extending from the base class "Seed".
 
 An quick example:
 
@@ -53,7 +53,7 @@ And that's it! enjoy your classes!!
 
 b) Integrated with BackboneJs
 
-Just include seed.js or seed.min.js just after your backbone requires... SeedJs will bind itself to Backbone models and (partially*) to backbone views.
+Just include <a href="https://raw.github.com/johnHackworth/SeedJs/master/bin/seed.js">seed.js</a> or <a href="https://raw.github.com/johnHackworth/SeedJs/master/bin/seed.js">seed.min.js</a> just after your backbone requires... SeedJs will bind itself to Backbone models and (partially*) to backbone views.
 
 After that, you only have to make your backbone models descend from SeedModel instead from Backbone.Model, and you'll have all the power from Seed on your backbone code.
 

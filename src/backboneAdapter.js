@@ -24,10 +24,13 @@
         Seed.assimilate.apply(Backbone.Model);
         µ.SeedModel = Backbone.Model.extend();
         var classImplementation = Seed.extend();
-        // µ.SeedModel = Seed.marry(Backbone.Model).extend();
         µ.SeedModel.prototype = $.extend(true, classImplementation.prototype, µ.SeedModel.prototype);
 
-        // Seed.assimilate.apply(Backbone.View);
-        // window.SeedView = Backbone.View.marry(Seed).extend();
+
+        Seed.assimilate.apply(Backbone.View);
+        µ.SeedView = Backbone.View.extend();
+        var viewImplementation = Seed.extend();
+        µ.SeedView.prototype = $.extend(true, viewImplementation.prototype, µ.SeedView.prototype);
+
     }
 }).apply(this);

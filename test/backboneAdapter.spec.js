@@ -13,15 +13,27 @@
 
 ****************/
 var root = (typeof exports != 'undefined' ? exports : window);
+// var browser = null;
 if(typeof exports != "undefined") { // run on node.js
     var expect = require("chai").expect
-    $ = jQuery = require("jquery")
+    root.$ = $ = jQuery = require("jquery")
     Backbone = require("backbone")
     var Seed = require("../src/seed.js")
     var backboneAdapter = require("../src/backboneAdapter.js")
     root.SeedModel = backboneAdapter.SeedModel;
+    root.SeedView = backboneAdapter.SeedView;
+    // var jsdom = require("jsdom");
+    // jsdom.env('<div class="tests">aaa</div>',
+    //     ['http://code.jquery.com/jquery-1.7.min.js'],
+    //     function(errors, window) {
+    //         browser = window;
+    //     }
+    // );
+
 } else {
     var expect = chai.expect;
+    // browser = window;
+    // browser.innerHTML += '<div class="tests"></div>';
 }
 
 describe('The backbone adapter of Seed ', function() {
@@ -39,6 +51,11 @@ describe('The backbone adapter of Seed ', function() {
             },
             'fire': function() {
                 this.weapons.laser.loaded = false;
+            }
+        });
+        this.StarshipView = root.SeedView.extend({
+            render: function() {
+                this.trigger('render');
             }
         })
     })
@@ -108,6 +125,7 @@ describe('The backbone adapter of Seed ', function() {
         expect(isLukePilot).to.be.not.ok
         expect(xwing.get('pilot').name).to.equal("Han");
     });
+
 
 
 });

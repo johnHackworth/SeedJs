@@ -11,7 +11,8 @@ Right now, SeedJs requires jQuery. We are working on a small library that substi
 Quick Intro
 ===========
 
-a) Standalone:
+a) Standalone
+--------------
 
 All you need is to include <a href="https://raw.github.com/johnHackworth/SeedJs/master/bin/seed.js">seed.js</a> or <a href="https://raw.github.com/johnHackworth/SeedJs/master/bin/seed.min.js">seed.min.js</a> in your project, and you are done. You can now declare classes just extending from the base class "Seed".
 
@@ -52,6 +53,7 @@ And that's it! enjoy your classes!!
 
 
 b) Integrated with BackboneJs
+-----------------------------
 
 Just include <a href="https://raw.github.com/johnHackworth/SeedJs/master/bin/seed.js">seed.js</a> or <a href="https://raw.github.com/johnHackworth/SeedJs/master/bin/seed.js">seed.min.js</a> just after your backbone requires... SeedJs will bind itself to Backbone models and (partially*) to backbone views.
 

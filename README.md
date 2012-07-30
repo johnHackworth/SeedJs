@@ -1,6 +1,6 @@
 SeedJs
 ======
-Version 0.12
+Version 0.13
 
 SeedJs is a standalone library that provides you the minimal structure to be able to implement classes in your javascript project. At the same time, it's also a backbone.js extender/fixer. Right now, it deals with backbone inheritance "problems" and fixes them, helping you to be able to have a more "classical" approach to your application architecture.
 

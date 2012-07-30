@@ -43,6 +43,8 @@
             
                 <li><a href="..&#x2F;classes/Seed.html">Seed</a></li>
             
+                <li><a href="..&#x2F;classes/SeedModel.html">SeedModel</a></li>
+            
             </ul>
 
             <ul id="api-modules" class="apis modules">
@@ -304,7 +306,7 @@
         if (method) {
             return this.parentMethod(method, options);
         } else {
-            return child.prototype._parent;
+            return this._parent;
         }
     }
     &#x2F;**

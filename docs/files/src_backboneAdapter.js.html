@@ -43,6 +43,8 @@
             
                 <li><a href="..&#x2F;classes/Seed.html">Seed</a></li>
             
+                <li><a href="..&#x2F;classes/SeedModel.html">SeedModel</a></li>
+            
             </ul>
 
             <ul id="api-modules" class="apis modules">
@@ -86,13 +88,19 @@
 
 <div class="file">
     <pre class="code prettyprint linenums">
-&#x2F;*****
-* BackboneAdapter.js
-*
-* Creates a SeedModel and SeedView classes that are direct extensions
-* of Backbone.Model and Backbone.View, with all the Seed.js improvements
-* added.
-*&#x2F;
+&#x2F;**********************************************************
+  BackboneAdapter.js
+
+  Creates a SeedModel and SeedView classes that are direct extensions
+  of Backbone.Model and Backbone.View, with all the Seed.js improvements
+  added.
+  https:&#x2F;&#x2F;github.com&#x2F;johnHackworth&#x2F;SeedJs
+
+  Author: Javi Alvarez
+  &lt;javieralvarezlop@gmail.com&gt;
+  http:&#x2F;&#x2F;twitter.com&#x2F;johnhackworth
+
+**********************************************************&#x2F;
 
 (function() {
     var µ;
@@ -109,14 +117,29 @@
         throw (&#x27;SeedJs need to be loaded on a browser or node&#x27;);
     }
     if (Backbone &amp;&amp; Seed) {
+        &#x2F;**
+        * This is a Model class derived from Backbone.Model, flavored with Seed functionality
+        *
+        * @class SeedModel
+        * @constructor
+        *&#x2F;
         Seed.assimilate.apply(Backbone.Model);
         µ.SeedModel = Backbone.Model.extend();
         var classImplementation = Seed.extend();
-        &#x2F;&#x2F; µ.SeedModel = Seed.marry(Backbone.Model).extend();
         µ.SeedModel.prototype = $.extend(true, classImplementation.prototype, µ.SeedModel.prototype);
 
-        &#x2F;&#x2F; Seed.assimilate.apply(Backbone.View);
-        &#x2F;&#x2F; window.SeedView = Backbone.View.marry(Seed).extend();
+        &#x2F;**
+        * This is a View class derived from Backbone.View, flavored with Seed functionality
+        *
+        * @class SeedModel
+        * @constructor
+        *&#x2F;
+
+        Seed.assimilate.apply(Backbone.View);
+        µ.SeedView = Backbone.View.extend();
+        var viewImplementation = Seed.extend();
+        µ.SeedView.prototype = $.extend(true, viewImplementation.prototype, µ.SeedView.prototype);
+
     }
 }).apply(this);
 

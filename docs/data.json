@@ -10,7 +10,9 @@
         "src/backboneAdapter.js": {
             "name": "src/backboneAdapter.js",
             "modules": {},
-            "classes": {},
+            "classes": {
+                "SeedModel": 1
+            },
             "fors": {},
             "namespaces": {}
         },
@@ -33,6 +35,19 @@
     },
     "modules": {},
     "classes": {
+        "SeedModel": {
+            "name": "SeedModel",
+            "shortname": "SeedModel",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "src/backboneAdapter.js",
+            "line": 41,
+            "description": "This is a View class derived from Backbone.View, flavored with Seed functionality",
+            "is_constructor": 1
+        },
         "Seed": {
             "name": "Seed",
             "shortname": "Seed",
@@ -51,8 +66,8 @@
         {
             "file": "src/backboneAdapter.js",
             "line": 1,
-            "description": "BackboneAdapter.js\n\nCreates a SeedModel and SeedView classes that are direct extensions\nof Backbone.Model and Backbone.View, with all the Seed.js improvements\nadded.",
-            "class": "Seed"
+            "description": "BackboneAdapter.js\n\nCreates a SeedModel and SeedView classes that are direct extensions\nof Backbone.Model and Backbone.View, with all the Seed.js improvements\nadded.\nhttps://github.com/johnHackworth/SeedJs\n\nAuthor: Javi Alvarez\n<javieralvarezlop@gmail.com>\nhttp://twitter.com/johnhackworth",
+            "class": "SeedModel"
         },
         {
             "file": "src/pi.js",

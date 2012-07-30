@@ -216,7 +216,7 @@
         if (method) {
             return this.parentMethod(method, options);
         } else {
-            return child.prototype._parent;
+            return this._parent;
         }
     }
     /**

@@ -15,10 +15,10 @@
 (function() {
     var µ;
 
-    if(typeof window != "undefined") {
+    if (typeof window != 'undefined') {
         µ = window;
         Seed = window.Seed;
-    } else if (typeof exports != "undefined") {
+    } else if (typeof exports != 'undefined') {
         µ = exports;
         ImportedSeed = require('./seed.js');
         Seed = ImportedSeed.Seed;
@@ -26,7 +26,7 @@
     } else {
         throw ('SeedJs need to be loaded on a browser or node');
     }
-    if (Backbone && Seed) {
+    if (typeof Backbone != 'undefined' && typeof Seed != 'undefined') {
         /**
         * This is a Model class derived from Backbone.Model, flavored with Seed functionality
         *

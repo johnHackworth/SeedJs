@@ -24,9 +24,9 @@
     var cloner = null;
     var µ;
 
-    if(typeof window != "undefined") {
+    if (typeof window != 'undefined') {
         µ = window;
-    } else if (typeof exports != "undefined") {
+    } else if (typeof exports != 'undefined') {
         µ = exports;
     } else {
         throw ('SeedJs need to be loaded on a browser or node');
@@ -180,9 +180,9 @@
     */
     Seed.prototype.isOwnProperty = function(property) {
         if (this._class) {
-            return this._class.hasOwnProperty(property)
+            return this._class.hasOwnProperty(property);
         } else {
-            return this.hasOwnProperty(property)
+            return this.hasOwnProperty(property);
         }
     }
 
@@ -248,8 +248,6 @@
                 parent.apply(this, arguments);
             };
         }
-        // Inherit class (static) properties from parent.
-//        child = cloner.assign(child, parent);
 
         // Set the prototype chain to inherit from `parent`, without calling
         // `parent`'s constructor function.
@@ -269,15 +267,12 @@
         // Correctly set child's `prototype.constructor`.
         child.prototype.constructor = child;
 
-        // shortcut to element "class"
-        // child.prototype.__class__ = child.prototype
-
         // shortcut to parent prototype
-        // child.__super__ = parent.prototype;
+        child.__super__ = parent.prototype;
 
         return child;
     };
-    Seed.inherits = inherits
+    Seed.inherits = inherits;
 
     /**
     * Allows a Seed to get the behaviour of another one,
@@ -332,10 +327,10 @@
 (function() {
     var µ;
 
-    if(typeof window != "undefined") {
+    if (typeof window != 'undefined') {
         µ = window;
         Seed = window.Seed;
-    } else if (typeof exports != "undefined") {
+    } else if (typeof exports != 'undefined') {
         µ = exports;
         ImportedSeed = require('./seed.js');
         Seed = ImportedSeed.Seed;
@@ -343,7 +338,7 @@
     } else {
         throw ('SeedJs need to be loaded on a browser or node');
     }
-    if (Backbone && Seed) {
+    if (typeof Backbone != 'undefined' && typeof Seed != 'undefined') {
         /**
         * This is a Model class derived from Backbone.Model, flavored with Seed functionality
         *

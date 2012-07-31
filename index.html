@@ -13,6 +13,9 @@
         h1 {
             color: #C80;
         }
+        h2 {
+            color: #999;
+        }
         .half {
             width: 40%;
             float: left;
@@ -26,62 +29,72 @@
     <h1>
         SeedJs
     </h1>
-    <h3>
+    <h2>
+        A library that provides you with a solid classical inheritance system in javascript. And, in the way, assimilate BackboneJs inheritance system into something more familiar for a non prototypical-minded developer.
+    </h2>
+    <h4>
         Use your javascript console to play with the provided examples of classes:
-    </h3>
-    Some <a href="readme.html">info</a>
-    <div class="half">
-        <pre>
-        Vehicle = Seed.extend({
-            engine:{cilindros:0, pistones:0},
-            wheels:0,
-            doors:0,
-            speed: 0,
-            noise: "rrrrrrrr",
-            run: function() {
-                $('body').append(this.noise);
-            },
-            accelerate: function() {
-                this.speed += 10;
-                console.log('new speed:' + this.speed);
-            },
-            brake: function() {
-                this.speed -= 10;
-            }
-        });
-        </pre>
-    </div>
-    <div class="half">
-        <pre>
-        Car = Vehicle.extend({wheels: 4,
-            doors:4,
-            noise: "brrum brrrum"
-        });
-        Motorbike = Vehicle.extend({wheels: 2});
-        Clio = Car.extend({
-            engine:{cilindros:8, pistones:16},
-            accelerate: function() {
-                this.parent('accelerate');
-                if(this.speed > 50) {
-                    this.speed = 0;
-                    alert('CRASH');
+    </h4>
+    <section>
+        Some <a href="readme.html">info</a>
+    </section>
+    <section>
+        <div class="half">
+            <pre>
+            Vehicle = Seed.extend({
+                engine:{cilindros:0, pistones:0},
+                wheels:0,
+                doors:0,
+                speed: 0,
+                noise: "rrrrrrrr",
+                run: function() {
+                    $('body').append(this.noise);
+                },
+                accelerate: function() {
+                    this.speed += 10;
+                    console.log('new speed:' + this.speed);
+                },
+                brake: function() {
+                    this.speed -= 10;
                 }
-            },
-            run: function() {
-                this.accelerate();
-                this.parent('run');
-            }
+            });
+            </pre>
+        </div>
+        <div class="half">
+            <pre>
+            Car = Vehicle.extend({wheels: 4,
+                doors:4,
+                noise: "brrum brrrum"
+            });
+            Motorbike = Vehicle.extend({wheels: 2});
+            Clio = Car.extend({
+                engine:{cilindros:8, pistones:16},
+                accelerate: function() {
+                    this.parent('accelerate');
+                    if(this.speed > 50) {
+                        this.speed = 0;
+                        alert('CRASH');
+                    }
+                },
+                run: function() {
+                    this.accelerate();
+                    this.parent('run');
+                }
 
-        });
-        Yamaha = Motorbike.extend({engine:{cilindros:4, pistones:10}});
-        </pre>
-    </div>
+            });
+            Yamaha = Motorbike.extend({engine:{cilindros:4, pistones:10}});
+            </pre>
+        </div>
+    </section>
+    <section>
     <div class="half">
         Get it at <a href="https://github.com/johnHackworth/SeedJs">https://github.com/johnHackworth/SeedJs</a>
     </div>
     <div class="half">
         Check the <a href="backbone.html">backboneJs integration example</a>
     </div>
+    </section>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script src="https://raw.github.com/johnHackworth/SeedJs/master/bin/seed.js"></script>
     <script>

@@ -31,13 +31,13 @@
     <div class="half">
         <pre>
         Vehicle = Seed.extend({
-            motor:{cilindros:0, pistones:0},
-            ruedas:0,
-            puertas:0,
+            engine:{cilindros:0, pistones:0},
+            wheels:0,
+            doors:0,
             speed: 0,
-            sound: "rrrrrrrr",
+            noise: "rrrrrrrr",
             run: function() {
-                $('body').append(this.sound);
+                $('body').append(this.noise);
             },
             accelerate: function() {
                 this.speed += 10;
@@ -51,13 +51,13 @@
     </div>
     <div class="half">
         <pre>
-        Car = Vehicle.extend({ruedas: 4,
-            puertas:4,
-            sound: "brrum brrrum"
+        Car = Vehicle.extend({wheels: 4,
+            doors:4,
+            noise: "brrum brrrum"
         });
-        Moto = Vehicle.extend({ruedas: 2});
+        Motorbike = Vehicle.extend({wheels: 2});
         Clio = Car.extend({
-            motor:{cilindros:8, pistones:16},
+            engine:{cilindros:8, pistones:16},
             accelerate: function() {
                 this.parent('accelerate');
                 if(this.speed > 50) {
@@ -71,7 +71,7 @@
             }
 
         });
-        Yamaha = Moto.extend({motor:{cilindros:4, pistones:10}});
+        Yamaha = Motorbike.extend({engine:{cilindros:4, pistones:10}});
         </pre>
     </div>
     <div class="half">
@@ -85,13 +85,13 @@
     <script src="/SeedJs/src/seed.js"></script>
     <script>
     window.Vehicle = Seed.extend({
-        motor:{cilindros:0, pistones:0},
-        ruedas:0,
-        puertas:0,
+        engine:{cilindros:0, pistones:0},
+        wheels:0,
+        doors:0,
         speed: 0,
-        sound: "rrrrrrrr",
+        noise: "rrrrrrrr",
         run: function() {
-            $('body').append(this.sound);
+            $('body').append(this.noise);
         },
         accelerate: function() {
             this.speed += 10;
@@ -101,13 +101,13 @@
             this.speed -= 10;
         }
     });
-    window.Car = Vehicle.extend({ruedas: 4,
-        puertas:4,
-        sound: "brrum brrrum"
+    window.Car = Vehicle.extend({wheels: 4,
+        doors:4,
+        noise: "brrum brrrum"
     });
-    window.Moto = Vehicle.extend({ruedas: 2});
+    window.Motorbike = Vehicle.extend({wheels: 2});
     window.Clio = Car.extend({
-        motor:{cilindros:8, pistones:16},
+        engine:{cilindros:8, pistones:16},
         accelerate: function() {
             this.parent('accelerate');
             if(this.speed > 50) {
@@ -121,7 +121,7 @@
         }
 
     });
-    window.Yamaha = Moto.extend({motor:{cilindros:4, pistones:10}});
+    window.Yamaha = Motorbike.extend({engine:{cilindros:4, pistones:10}});
 
     </script>
 </body>

@@ -53,8 +53,8 @@
     <section>
         <div class="half">
             <pre>
-            var Vehiculo = SeedModel.extend({motor:{cilindros:0, pistones:0},
-                ruedas:0,
+            var Vehicle = SeedModel.extend({Engine:{cylinders:0, pistons:0},
+                wheels:0,
                 puertas:0,
                 speed: 0,
                 name: 'Vehicle',
@@ -62,7 +62,7 @@
                 run: function() {
                     this.trigger('run');
                 },
-                acelerate: function() {
+                accelerate: function() {
                     this.speed += 10;
                     console.log('new speed:' + this.speed);
                 },
@@ -70,23 +70,23 @@
                     this.speed -= 10;
                 }
             });
-            var Coche = Vehiculo.extend({ruedas: 4,
+            var Coche = Vehicle.extend({wheels: 4,
                 puertas:4,
                 sound: "brrum brrrum"
             });
-            var Moto = Vehiculo.extend({ruedas: 2});
+            var Motorbike = Vehicle.extend({wheels: 2});
             var Clio = Coche.extend({
                 name: "little car",
-                motor:{cilindros:8, pistones:16},
-                acelerate: function() {
-                    this.parent('acelerate');
+                Engine:{cylinders:8, pistons:16},
+                accelerate: function() {
+                    this.parent('accelerate');
                     if(this.speed > 50) {
                         this.speed = 0;
                         alert('CRASH');
                     }
                 },
                 run: function() {
-                    this.acelerate();
+                    this.accelerate();
                     this.parent('run');
                 }
 
@@ -95,17 +95,17 @@
         </div>
         <div class="half">
             <pre>
-            var Yamaha = Moto.extend({
+            var Yamaha = Motorbike.extend({
                 name: "Yamaha",
-                motor:{cilindros:4, pistones:10},
+                Engine:{cylinders:4, pistons:10},
                 run: function()  {
-                    this.acelerate();
-                    this.acelerate();
+                    this.accelerate();
+                    this.accelerate();
                     this.parent('run');
                 }
             });
-            var VehiculoView = SeedView.extend({
-                model: Vehiculo,
+            var VehicleView = SeedView.extend({
+                model: Vehicle,
                 events: {
                     'click a':'run'
                 },
@@ -124,7 +124,7 @@
                     this.model.run();
                 }
             })
-            var MotoView = VehiculoView.extend({
+            var MotorbikeView = VehicleView.extend({
                 render: function() {
                     this.parent('render');
                     $(this.el).append(" <- click this to brrrrrrrroum");
@@ -152,8 +152,8 @@
 
 
 <script>
-window.Vehiculo = SeedModel.extend({motor:{cilindros:0, pistones:0},
-    ruedas:0,
+window.Vehicle = SeedModel.extend({Engine:{cylinders:0, pistons:0},
+    wheels:0,
     puertas:0,
     speed: 0,
     name: 'Vehicle',
@@ -161,7 +161,7 @@ window.Vehiculo = SeedModel.extend({motor:{cilindros:0, pistones:0},
     run: function() {
         this.trigger('run');
     },
-    acelerate: function() {
+    accelerate: function() {
         this.speed += 10;
         console.log('new speed:' + this.speed);
     },
@@ -169,39 +169,39 @@ window.Vehiculo = SeedModel.extend({motor:{cilindros:0, pistones:0},
         this.speed -= 10;
     }
 });
-window.Coche = Vehiculo.extend({ruedas: 4,
+window.Coche = Vehicle.extend({wheels: 4,
     puertas:4,
     sound: "brrum brrrum"
 });
-window.Moto = Vehiculo.extend({ruedas: 2});
+window.Motorbike = Vehicle.extend({wheels: 2});
 window.Clio = Coche.extend({
     name: "little car",
-    motor:{cilindros:8, pistones:16},
-    acelerate: function() {
-        this.parent('acelerate');
+    Engine:{cylinders:8, pistons:16},
+    accelerate: function() {
+        this.parent('accelerate');
         if(this.speed > 50) {
             this.speed = 0;
             alert('CRASH');
         }
     },
     run: function() {
-        this.acelerate();
+        this.accelerate();
         this.parent('run');
     }
 
 });
-window.Yamaha = Moto.extend({
+window.Yamaha = Motorbike.extend({
     name: "Yamaha",
-    motor:{cilindros:4, pistones:10},
+    Engine:{cylinders:4, pistons:10},
     run: function()  {
-        this.acelerate();
-        this.acelerate();
+        this.accelerate();
+        this.accelerate();
         this.parent('run');
     }
 });
 
-window.VehiculoView = SeedView.extend({
-    model: Vehiculo,
+window.VehicleView = SeedView.extend({
+    model: Vehicle,
     events: {
         'click a':'run'
     },
@@ -221,7 +221,7 @@ window.VehiculoView = SeedView.extend({
     }
 })
 
-window.MotoView = VehiculoView.extend({
+window.MotorbikeView = VehicleView.extend({
     render: function() {
         this.parent('render');
         $(this.el).append(" <- click this to brrrrrrrroum");
@@ -230,20 +230,20 @@ window.MotoView = VehiculoView.extend({
 
 $(document).ready(function() {
 
-    window.v = new Vehiculo();
-    window.vView = new VehiculoView({
+    window.v = new Vehicle();
+    window.vView = new VehicleView({
         el: $('.container'),
         model: v
     });
     vView.render();
     window.c = new Clio();
-    window.cView = new VehiculoView({
+    window.cView = new VehicleView({
         el: $('.containerClio'),
         model: c
     });
     cView.render();
     window.y = new Yamaha();
-    window.yView = new MotoView({
+    window.yView = new MotorbikeView({
         el: $('.containerYamaha '),
         model: y
     });

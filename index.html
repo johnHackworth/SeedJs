@@ -1,0 +1,128 @@
+<html>
+<head>
+    <meta charset='utf-8'>
+    <link href='http://fonts.googleapis.com/css?family=Crete+Round' rel='stylesheet' type='text/css'>
+    <style>
+        body {
+            background: #333;
+            color: #eee;
+            padding: 5%;
+            font-family: 'Crete Round', serif;
+        }
+        h1 {
+            color: #C80;
+        }
+        .half {
+            width: 40%;
+            float: left;
+        }
+        a {
+            color: #DFA;
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        SeedJs
+    </h1>
+    <h3>
+        Use your javascript console to play with the provided examples of classes:
+    </h3>
+    <div class="half">
+        <pre>
+        Vehicle = Seed.extend({
+            engine:{cilindros:0, pistones:0},
+            wheels:0,
+            doors:0,
+            speed: 0,
+            noise: "rrrrrrrr",
+            run: function() {
+                $('body').append(this.noise);
+            },
+            accelerate: function() {
+                this.speed += 10;
+                console.log('new speed:' + this.speed);
+            },
+            brake: function() {
+                this.speed -= 10;
+            }
+        });
+        </pre>
+    </div>
+    <div class="half">
+        <pre>
+        Car = Vehicle.extend({wheels: 4,
+            doors:4,
+            noise: "brrum brrrum"
+        });
+        Motorbike = Vehicle.extend({wheels: 2});
+        Clio = Car.extend({
+            engine:{cilindros:8, pistones:16},
+            accelerate: function() {
+                this.parent('accelerate');
+                if(this.speed > 50) {
+                    this.speed = 0;
+                    alert('CRASH');
+                }
+            },
+            run: function() {
+                this.accelerate();
+                this.parent('run');
+            }
+
+        });
+        Yamaha = Motorbike.extend({engine:{cilindros:4, pistones:10}});
+        </pre>
+    </div>
+    <div class="half">
+        Get it at <a href="https://github.com/johnHackworth/SeedJs">https://github.com/johnHackworth/SeedJs</a>
+    </div>
+    <div class="half">
+        Check the <a href="exampleBackbone.html">backboneJs integration example</a>
+    </div>
+    <script src=" https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="/SeedJs/src/pi.js"></script>
+    <script src="/SeedJs/src/seed.js"></script>
+    <script>
+    window.Vehicle = Seed.extend({
+        engine:{cilindros:0, pistones:0},
+        wheels:0,
+        doors:0,
+        speed: 0,
+        noise: "rrrrrrrr",
+        run: function() {
+            $('body').append(this.noise);
+        },
+        accelerate: function() {
+            this.speed += 10;
+            console.log('new speed:' + this.speed);
+        },
+        brake: function() {
+            this.speed -= 10;
+        }
+    });
+    window.Car = Vehicle.extend({wheels: 4,
+        doors:4,
+        noise: "brrum brrrum"
+    });
+    window.Motorbike = Vehicle.extend({wheels: 2});
+    window.Clio = Car.extend({
+        engine:{cilindros:8, pistones:16},
+        accelerate: function() {
+            this.parent('accelerate');
+            if(this.speed > 50) {
+                this.speed = 0;
+                alert('CRASH');
+            }
+        },
+        run: function() {
+            this.accelerate();
+            this.parent('run');
+        }
+
+    });
+    window.Yamaha = Motorbike.extend({engine:{cilindros:4, pistones:10}});
+
+    </script>
+</body>
+</html>

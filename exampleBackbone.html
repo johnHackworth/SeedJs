@@ -53,7 +53,7 @@
     <section>
         <div class="half">
             <pre>
-            var Vehicle = SeedModel.extend({Engine:{cylinders:0, pistons:0},
+            var Vehicle = SeedModel.extend({engine:{cylinders:0, pistons:0},
                 wheels:0,
                 puertas:0,
                 speed: 0,
@@ -77,7 +77,7 @@
             var Motorbike = Vehicle.extend({wheels: 2});
             var Clio = Coche.extend({
                 name: "little car",
-                Engine:{cylinders:8, pistons:16},
+                engine:{cylinders:8, pistons:16},
                 accelerate: function() {
                     this.parent('accelerate');
                     if(this.speed > 50) {
@@ -97,7 +97,7 @@
             <pre>
             var Yamaha = Motorbike.extend({
                 name: "Yamaha",
-                Engine:{cylinders:4, pistons:10},
+                engine:{cylinders:4, pistons:10},
                 run: function()  {
                     this.accelerate();
                     this.accelerate();
@@ -152,7 +152,7 @@
 
 
 <script>
-window.Vehicle = SeedModel.extend({Engine:{cylinders:0, pistons:0},
+window.Vehicle = SeedModel.extend({engine:{cylinders:0, pistons:0},
     wheels:0,
     puertas:0,
     speed: 0,
@@ -176,7 +176,7 @@ window.Coche = Vehicle.extend({wheels: 4,
 window.Motorbike = Vehicle.extend({wheels: 2});
 window.Clio = Coche.extend({
     name: "little car",
-    Engine:{cylinders:8, pistons:16},
+    engine:{cylinders:8, pistons:16},
     accelerate: function() {
         this.parent('accelerate');
         if(this.speed > 50) {
@@ -192,7 +192,7 @@ window.Clio = Coche.extend({
 });
 window.Yamaha = Motorbike.extend({
     name: "Yamaha",
-    Engine:{cylinders:4, pistons:10},
+    engine: {cylinders:4, pistons:10},
     run: function()  {
         this.accelerate();
         this.accelerate();
@@ -212,7 +212,9 @@ window.VehicleView = SeedView.extend({
 
     },
     render: function() {
-        $(this.el).html("The " + this.model.name + ' goes at ' + this.model.speed);
+        $(this.el).html("The " + this.model.name + ' has ' +
+            this.model.engine.cylinders + ' cylinders and ' + this.model.engine.pistons +
+            'pistons, and currently is running at ' + this.model.speed + ' km/h');
         $(this.el).append("<br/><a href='#'>Run run run!</a>");
     },
     run: function(e) {

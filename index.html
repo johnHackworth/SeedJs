@@ -25,7 +25,7 @@
             color: #DFA;
         }
         #forkme_banner {
-            background: url("../images/blacktocat.png") no-repeat scroll 95% 50% #0090FF;
+            background: url("./images/blacktocat.png") no-repeat scroll 95% 50% #0090FF;
             border-bottom-left-radius: 2px;
             border-bottom-right-radius: 2px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -39,13 +39,32 @@
             z-index: 10;
         }
         #downloads {
-            background: url("../images/icon_download.png") no-repeat scroll 0 90% transparent;
+            background: url("./images/icon_download.png") no-repeat scroll 0 90% transparent;
             top: 70px;
             height: 70px;
             position: absolute;
             right: 0;
             width: 210px;
             z-index: 10;
+        }
+        .zip_download_link {
+            background: url("./images/sprite_download.png") no-repeat scroll left bottom transparent;
+            display: block;
+            float: right;
+            height: 70px;
+            overflow: hidden;
+            text-indent: -5000px;
+            width: 90px;
+        }
+        .tar_download_link {
+            background: url("./images/sprite_download.png") no-repeat scroll right bottom transparent;
+            display: block;
+            float: right;
+            height: 70px;
+            margin-left: 10px;
+            overflow: hidden;
+            text-indent: -5000px;
+            width: 90px;
         }
     </style>
 </head>

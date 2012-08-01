@@ -42,7 +42,7 @@ describe('The backbone adapter of Seed ', function() {
         this.Starship = this.Model.extend({'weight':2000,
             'weapons': {
                 'laser': {
-                    'loaded':true
+                    'loaded': true
                 }
 
             },
@@ -57,7 +57,19 @@ describe('The backbone adapter of Seed ', function() {
             render: function() {
                 this.trigger('render');
             }
-        })
+        });
+
+        this.ColonyShip = this.Starship.extend({
+            defaults: {
+                'population': 500000,
+                'destination': {
+                    'star': 'Betelgeuse'
+                },
+                'pilot': {
+                    'name': 'autopilot'
+                }
+            }
+        });
     })
 
     afterEach(function() {
@@ -125,6 +137,19 @@ describe('The backbone adapter of Seed ', function() {
         expect(isLukePilot).to.be.not.ok
         expect(xwing.get('pilot').name).to.equal("Han");
     });
+
+    it('should be able to instantiate not linked complex default values ', function() {
+        var generationShip = new this.ColonyShip({"pilot":{"name":"I-pilot"}})
+        var podShip = new this.ColonyShip()
+
+        podShip.get('destination').star = 'Alpha-centaury';
+
+        expect(podShip.get('destination').star).to.equal('Alpha-centaury');
+        expect(generationShip.get('destination').star).to.equal('Betelgeuse');
+
+        expect(generationShip.get('pilot').name).to.equal("I-pilot");
+        expect(podShip.get('pilot').name).to.equal("autopilot");
+    })
 
 
 

@@ -42,21 +42,15 @@
         Seed.assimilate.apply(µ.SeedModel);
         µ.SeedModel.prototype = $.extend(true, Seed.extend().prototype, Backbone.Model.prototype);
 
-    //µ.SeedModel = Backbone.Model.marry(Seed).extend(); // Backbone.Model.marry(Seed).extend();
-        // var classImplementation = Seed.extend();
-        // µ.SeedModel.prototype = $.extend(true, classImplementation.prototype, Seed.prototype);
-
         /**
         * This is a View class derived from Backbone.View, flavored with Seed functionality
         *
-        * @class SeedModel
+        * @class SeedView
         * @constructor
         */
-
         Seed.assimilate.apply(Backbone.View);
         µ.SeedView = Backbone.View.extend();
-        var viewImplementation = Seed.extend();
-        µ.SeedView.prototype = $.extend(true, viewImplementation.prototype, µ.SeedView.prototype);
+        µ.SeedView.prototype = $.extend(true, Seed.extend().prototype, µ.SeedView.prototype);
 
     }
 }).apply(this);
